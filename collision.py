@@ -5,3 +5,4 @@ class Collision:
 
     def test_collision(self):
         pass
+
