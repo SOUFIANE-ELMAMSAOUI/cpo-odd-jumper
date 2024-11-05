@@ -1,10 +1,5 @@
-import pygame
+from jeu import Jeu
 
-pygame.init()
-
-fenetre = pygame.display.set_mode((640, 480))
-
-while True:
-    pass
-
-
+if __name__ == "__main__":
+    jeu = Jeu()
+    jeu.run()
