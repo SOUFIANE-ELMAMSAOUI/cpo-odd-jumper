@@ -13,7 +13,6 @@ class Menu:
     def create_boutons(self):
         file = open(self.path, 'r')
         data = json.load(file)
-        print(data)
         for bouton_data in data["boutons"]:
             self.boutons.append(Bouton(bouton_data["size"], bouton_data["text"], font, bouton_data["position"], self.fenetre))
 
