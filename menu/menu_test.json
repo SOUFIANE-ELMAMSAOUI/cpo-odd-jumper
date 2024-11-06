@@ -1,0 +1,4 @@
+{
+  "boutons":
+    [{"size":[150, 50], "text":"Bouton 1", "position":[10, 10]},
+    {"size":[150, 50], "text":"Bouton 2", "position":[10, 80]}]}

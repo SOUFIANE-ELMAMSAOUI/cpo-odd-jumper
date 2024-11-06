@@ -9,7 +9,7 @@ class Bouton:
         self.font = font
         self.text = self.font.render(self.text_bouton, True, (0, 0, 0))
         self.text_rect = self.text.get_rect(center=(self.button_surface.get_width() / 2, self.button_surface.get_height() / 2))
-        self.button_rect = pygame.Rect(position[0], position[1], position[0]+size[0], position[1]+size[1])
+        self.button_rect = pygame.Rect(position[0], position[1], size[0], size[1])
         self.fenetre = fenetre
 
     def animation(self):
