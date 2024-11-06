@@ -7,8 +7,8 @@ pygame.init()
 clock=pygame.time.Clock()
 
 # Create a Pygame window
-window_size = (400, 400)
-screen = pygame.display.set_mode(window_size)
+window_size = (1920, 1280)
+screen = pygame.display.set_mode(window_size, pygame.FULLSCREEN)
 pygame.display.set_caption('Pygame Clickable Button')
 
 # Create a font object
@@ -18,7 +18,7 @@ font = pygame.font.Font(None, 24)
 button_surface = pygame.Surface((150, 50))
 
 # Render text on the button
-text = font.render("Click Me", True, (0, 0, 0))
+text = font.render("Quitter", True, (0, 0, 0))
 text_rect = text.get_rect(center=(button_surface.get_width()/2, button_surface.get_height()/2))
 
 
@@ -45,18 +45,15 @@ while True:
   if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
    # Call the on_mouse_button_down() function
    if button_rect.collidepoint(event.pos):
-    print("Button clicked!")
+    pygame.quit()
+    sys.exit()
 
  # Check if the mouse is over the button. This will create the button hover effect
  if button_rect.collidepoint(pygame.mouse.get_pos()):
   pygame.draw.rect(button_surface, (127, 255, 212), (1, 1, 148, 48))
  else:
-  pygame.draw.rect(button_surface, (0, 0, 0), (0, 0, 150, 50))
   pygame.draw.rect(button_surface, (255, 255, 255), (1, 1, 148, 48))
-  pygame.draw.rect(button_surface, (0, 0, 0), (1, 1, 148, 1), 2)
-  pygame.draw.rect(button_surface, (0, 100, 0), (1, 48, 148, 10), 2)
-  
-  
+
  
  # Shwo the button text
  button_surface.blit(text, text_rect)
