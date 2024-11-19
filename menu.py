@@ -7,14 +7,14 @@ class Menu:
         self.path = path
         self.boutons = []
         self.fenetre = fenetre
-
+        self.font = pygame.font.Font(None, 24)
 
 
     def create_boutons(self):
         file = open(self.path, 'r')
         data = json.load(file)
         for bouton_data in data["boutons"]:
-            self.boutons.append(Bouton(bouton_data["size"], bouton_data["text"], font, bouton_data["position"], self.fenetre))
+            self.boutons.append(Bouton(bouton_data["size"], bouton_data["text"], self.font, bouton_data["position"], self.fenetre))
 
 
     def run(self):
@@ -43,7 +43,7 @@ if __name__ == "__main__":
     pygame.display.set_caption('Test Bouton')
     clock.tick(60)
 
-    font = pygame.font.Font(None, 24)
+
 
     menu_test = Menu("./menu/menu_test.json", fenetre)
     menu_test.create_boutons()
@@ -53,6 +53,5 @@ if __name__ == "__main__":
 
     while loop:
         loop = menu_test.run()
-
         # Update the game state
         pygame.display.update()

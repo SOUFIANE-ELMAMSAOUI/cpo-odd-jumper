@@ -1,6 +1,6 @@
 {
   "name": "Gobelin marchand",
-  "image": "Graphics/Orc-Peon-Red.png",
+  "path_image": "Graphics/Orc-Peon-Red.png",
   "position": [255, 64],
   "scale": 2,
   "image_size": [32, 32],

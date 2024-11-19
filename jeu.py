@@ -8,7 +8,7 @@ class Jeu:
         pygame.init()
 
         # définir les fps du jeu
-        self.window_size = (1920, 1280)
+        self.window_size = (1920, 1080)
         self.clock = pygame.time.Clock()
         self.clock.tick(60)
 
@@ -33,5 +33,5 @@ class Jeu:
     def main_menu(self):
         pass
 
-    def load_levels(self):
+    def load_levels_data(self):
         pass
