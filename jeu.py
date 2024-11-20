@@ -19,13 +19,13 @@ class Jeu:
 
         #création des menus TEMPORAIRE
         self.menu_1 = Menu("./menu/menu_principal.json",0,  self.fenetre)
-        self.menu_1.create_boutons()
+        self.menu_1.create_data()
 
         self.menu_niveau = Menu("./menu/menu_niveau.json", 1, self.fenetre)
-        self.menu_niveau.create_boutons()
+        self.menu_niveau.create_data()
 
         self.menu_badge = Menu("./menu/menu_badge.json", 2, self.fenetre)
-        self.menu_badge.create_boutons()
+        self.menu_badge.create_data()
 
         self.loop = True
 
@@ -35,7 +35,7 @@ class Jeu:
         while self.loop:
 
             if self.etat == -1:
-                #bouton quitté
+                #quitté
                 self.loop = False
 
             elif self.etat == 0:
@@ -51,7 +51,7 @@ class Jeu:
                 self.loop, self.etat = self.menu_badge.run()
 
 
-            #on update l'écran avec la nouvelle fram
+            #on update l'écran avec la nouvelle frame
             pygame.display.update()
 
     def load_levels_data(self):

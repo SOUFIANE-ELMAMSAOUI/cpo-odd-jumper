@@ -51,7 +51,7 @@ if __name__ == "__main__":
         screen.fill((50, 50, 50))  # Fond gris foncé
 
 
-        image.draw(screen, (0, 0))  # Position (x=100, y=100)
+        image.draw(screen, (0, 0))
         image2 .draw(screen, (50, 50))
 
 
