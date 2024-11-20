@@ -1,0 +1,4 @@
+-1 : quitter/entrain de quitter
+0 : menu principal
+1: menu niveaux
+2: menu badge

@@ -4,7 +4,7 @@ from menu import Menu
 
 class Jeu:
     def __init__(self):
-        self.etat = 0 # 0 = menu principale
+        self.etat = 0 # liste des état dans le fichier ./menu/info_etat.txt
         #self.joueur = Joueur([10, 10], [0, 0])
         pygame.init()
 
