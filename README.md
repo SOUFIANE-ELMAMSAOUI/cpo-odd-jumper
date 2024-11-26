@@ -22,3 +22,8 @@ Semaine 3 :
 - Test des sounds effect.
 - Création des objets collisions depuis fichier ".json" d'une map.
 - Ajouter deux méthodes de collision dans la class Collision.
+
+Semaine 4:
+Animation spritesheet faite.
+finition des collisions.
+Boucle de simulation de niveau.
