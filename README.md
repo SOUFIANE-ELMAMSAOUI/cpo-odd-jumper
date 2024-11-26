@@ -24,6 +24,6 @@ Semaine 3 :
 - Ajouter deux méthodes de collision dans la class Collision.
 
 Semaine 4:
-Animation spritesheet faite.
-finition des collisions.
-Boucle de simulation de niveau.
+- Animation spritesheet faite.
+- finition des collisions.
+- Boucle de simulation de niveau.
