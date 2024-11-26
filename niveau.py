@@ -1,21 +1,27 @@
 from collision import Collision
 from entity import Entity
 from objectif import Objectif
+from image import Image
+from joueur import Joueur
 import os
 import json
 import pygame
 
 class Niveau:
 
-    def __init__(self, data_path):
-        self.name = ""
+    def __init__(self, name, entities_path, data_path, path_image_fond, data_joueur, fenetre):
+        self.name = name
+        self.entities_path = entities_path
         self.data_path = data_path
         self.entities = []  # Initialiser la liste des entités
         self.objectif = None
         self.colliders = []
+        self.image_fond = Image(path_image_fond)
+        self.fenetre = fenetre
+        self.joueur = Joueur(fenetre=fenetre, spritesheet_path=data_joueur)
 
     def load_data_level(self):
-        entities_dir = os.path.join("levels_data", "Entités")
+        entities_dir = os.path.join("levels_data", self.entities_path)
 
         if not os.path.isdir(entities_dir):
             print(f"Le dossier {entities_dir} n'existe pas.")
@@ -41,37 +47,62 @@ class Niveau:
         print(f"{len(self.entities)} entités chargées avec succès.")
 
     def create_colliders(self):
-        file = open("./levels_data/niveau_test.json", 'r')
+        file = open(self.data_path, 'r')
         data = json.load(file)
 
         for layers in data["layers"]:
             if layers["name"] ==  "collision":
                 for n, tile_value in enumerate(layers["data"]):
                     if tile_value > 0:
-                        self.colliders.append(Collision([n%data["tilewidth"], int((n-n%data["tilewidth"])/data["tilewidth"])], [data["tilewidth"], data["tileheight"]]))
+                        print(((n-n%data["tilewidth"])/data["tilewidth"])*data["tileheight"])
+                        self.colliders.append(Collision([n%data["tilewidth"]*data["tilewidth"], int((n-n%data["tilewidth"])/data["tilewidth"])*data["tileheight"]], [data["tilewidth"], data["tileheight"]]))
 
-
-    def load_level(self):
-        #changement des images du niveau
-        #=> image du fond, images de toute les entitées
-        pass
+    def pre_run(self):
+        #charger l'image de fond
+        self.image_fond.load_image()
+        #charger le spritesheet du joueur
+        self.joueur.spritesheet.image.load_image()
 
     def run(self):
         #boucle de simulation pour un niveau
+
+        #game input
+
+        #game physique : movements etc
+        self.joueur.move(self.colliders)
+        #affichager des images dans le plan du fond (ex :niveau)
+        self.show()
+        #affichage des images dans l'avant plan (ex: joueur, entité)
+        self.joueur.show()
         pass
+
+    def show(self):
+        self.image_fond.draw(self.fenetre,(0,0))
+
+
+
 
 
 if __name__ == "__main__":
-    data_path = "Entités"
+    pygame.init()
 
-    niveau = Niveau(data_path)
+    screen = pygame.display.set_mode((1920, 1080), pygame.FULLSCREEN)
+    pygame.display.set_caption("Test niveau")
+
+
+    # test entites et colliders
+    p = "./levels_data/level_test.json"
+    file = open(p, 'r')
+    d = json.load(file)
+
+
+    niveau = Niveau(d["name"], d["entities_path"], d["data_path"], d["path_image_fond"], d["joueur"]["spritesheet"], screen)
     niveau.load_data_level()
 
     print(f"Nom du niveau : {niveau.name}")
     print("Entités chargées :")
     for entity in niveau.entities:
-        print(f"Nom: {getattr(entity, 'name', 'N/A')}, Image: {getattr(entity, 'image', 'N/A')}, Position: {getattr(entity, 'position', 'N/A')}, "
-              f"Échelle: {getattr(entity, 'scale', 'N/A')}, Taille d'image: {getattr(entity, 'image_size', 'N/A')}")
+        print(f"Nom: {getattr(entity, 'name', 'N/A')}, MAX_SPEED: {getattr(entity, 'MAX_SPEED', 'N/A')}, collision: {getattr(entity, 'collision', 'N/A')}")
 
     if niveau.objectif:
         print(f"Objectif chargé à la position: {niveau.objectif.position}")
@@ -80,3 +111,18 @@ if __name__ == "__main__":
 
     niveau.create_colliders()
     print(niveau.colliders)
+
+
+    #test fenetre
+
+    niveau.pre_run()
+
+    running = True
+    while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+        niveau.run()
+
+        pygame.display.flip()
+

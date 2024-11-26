@@ -54,7 +54,7 @@ if __name__ == "__main__":
     c2 = Collision(position=[20, 20], size=[2, 2])
 
     # Définition de la vitesse initiale
-    vitesse_c2 = [3,3]  # c2 se déplace vers la droite
+    vitesse_c2 = [0,3]  # c2 se déplace vers la droite
 
     for step in range(10):
         print(f"\nÉtape {step + 1}:")

@@ -1,3 +1,9 @@
 {
-  "name" : "Niveau de test"
+  "name" : "Niveau de test",
+  "entities_path" : "Entités",
+  "data_path" : "./levels_data/niveau_test.json",
+  "path_image_fond": "niveau_test.png",
+  "joueur" : {
+    "spritesheet" : "test_joueur.png"
+  }
 }
