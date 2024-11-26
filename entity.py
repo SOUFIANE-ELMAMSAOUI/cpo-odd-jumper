@@ -1,9 +1,14 @@
+from collision import Collision
 from spritesheet import Spritesheet
+
 class Entity:
-    def __init__(self,MAX_SPEED: list[int] = [0, 0], vitesse: list[int] = [0, 0]):
+    def __init__(self,MAX_SPEED = [0, 0], vitesse= [0, 0], name = "", path_image = "", position= [0, 0], size = [0, 0]):
         self.MAX_SPEED = MAX_SPEED
         self.vitesse = vitesse
         self.spritesheet = None
+        self.name = name
+        self.path_image = path_image
+        self.collision = Collision(position, size)
 
     def animation(self):
         pass

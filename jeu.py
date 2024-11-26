@@ -1,22 +1,58 @@
 import pygame
- #from joueur import Joueur
+from menu import Menu
+#from joueur import Joueur
 
 class Jeu:
     def __init__(self):
-        self.etat = 0 # 0 = menu principale
+        self.etat = 0 # liste des état dans le fichier ./menu/info_etat.txt
         #self.joueur = Joueur([10, 10], [0, 0])
         pygame.init()
+
+        # définir les paramètre de la fenetre
+        self.window_size = (1920, 1080)
+        self.clock = pygame.time.Clock()
+        self.clock.tick(120)
+
+        #créer la fenetre
+        self.fenetre = pygame.display.set_mode(self.window_size, pygame.FULLSCREEN)
+        pygame.display.set_caption('ODD jumper')
+
+        #création des menus TEMPORAIRE
+        self.menu_1 = Menu("./menu/menu_principal.json",0,  self.fenetre)
+        self.menu_1.create_data()
+
+        self.menu_niveau = Menu("./menu/menu_niveau.json", 1, self.fenetre)
+        self.menu_niveau.create_data()
+
+        self.menu_badge = Menu("./menu/menu_badge.json", 2, self.fenetre)
+        self.menu_badge.create_data()
+
+        self.loop = True
 
 
     def run(self):
         # boucle de simulation
-        fenetre = pygame.display.set_mode((640, 480))
-        loop = True
-        while loop:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    loop = False
+        while self.loop:
+
+            if self.etat == -1:
+                #quitté
+                self.loop = False
+
+            elif self.etat == 0:
+                #menu principale
+                self.loop, self.etat = self.menu_1.run()
+
+            elif self.etat == 1:
+                #menu des niveaux
+                self.loop, self.etat = self.menu_niveau.run()
+
+            elif self.etat == 2:
+                #menu des badges
+                self.loop, self.etat = self.menu_badge.run()
 
 
-    def load_levels(self):
+            #on update l'écran avec la nouvelle frame
+            pygame.display.update()
+
+    def load_levels_data(self):
         pass

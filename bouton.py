@@ -2,7 +2,7 @@ import pygame
 
 
 class Bouton:
-    def __init__(self, size=[150, 50], text_bouton="Bouton", font= None, position = [10, 10], fenetre = None):
+    def __init__(self, size=[150, 50], text_bouton="Bouton", font= None, position = [10, 10], command = 0, fenetre = None):
         self.size = size
         self.text_bouton = text_bouton
         self.button_surface = pygame.Surface(size)
@@ -10,6 +10,7 @@ class Bouton:
         self.text = self.font.render(self.text_bouton, True, (0, 0, 0))
         self.text_rect = self.text.get_rect(center=(self.button_surface.get_width() / 2, self.button_surface.get_height() / 2))
         self.button_rect = pygame.Rect(position[0], position[1], size[0], size[1])
+        self.command = command
         self.fenetre = fenetre
 
     def animation(self):

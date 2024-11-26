@@ -1,0 +1,10 @@
+{
+  "name": "Gobelin marchand",
+  "path_image": "Graphics/Orc-Peon-Red.png",
+  "position": [255, 64],
+  "scale": 2,
+  "image_size": [32, 32],
+  "MAX_SPEED": [10, 10],
+  "vitesse": [0, 0]
+}
+
