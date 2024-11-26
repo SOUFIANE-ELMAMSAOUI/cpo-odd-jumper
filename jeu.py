@@ -8,10 +8,10 @@ class Jeu:
         #self.joueur = Joueur([10, 10], [0, 0])
         pygame.init()
 
-        # définir les fps du jeu
+        # définir les paramètre de la fenetre
         self.window_size = (1920, 1080)
         self.clock = pygame.time.Clock()
-        self.clock.tick(60)
+        self.clock.tick(120)
 
         #créer la fenetre
         self.fenetre = pygame.display.set_mode(self.window_size, pygame.FULLSCREEN)
