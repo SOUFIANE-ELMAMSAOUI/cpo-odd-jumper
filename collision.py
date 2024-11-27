@@ -16,7 +16,7 @@ class Collision:
 
     def test_collision_dyn(self, c, vitesse):
     # Clone de la vitesse pour éviter de modifier l'original
-        v = vitesse[:]
+        v = vitesse
 
     # Collision sur l'axe X
         if (

@@ -67,7 +67,7 @@ class Niveau:
         #boucle de simulation pour un niveau
 
         #game input
-
+        self.joueur.input_handle()
         #game physique : movements etc
         self.joueur.move(self.colliders)
         #affichager des images dans le plan du fond (ex :niveau)

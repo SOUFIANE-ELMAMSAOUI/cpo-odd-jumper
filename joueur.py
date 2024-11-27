@@ -1,11 +1,15 @@
 import time
 
+import pygame
+
 from collision import Collision
 from spritesheet import Spritesheet
 
+
 class Joueur:
-    def __init__(self, MAX_SPEED = [200, 200], vitesse = [0, 0], animation_frame = 0, jump_authorized = True, fenetre = None, spritesheet_path = ""):
+    def __init__(self, MAX_SPEED = [400, 400], WALK_SPEED = 200, vitesse = [0, 0], animation_frame = 0, jump_authorized = True, fenetre = None, spritesheet_path = ""):
         self.MAX_SPEED = MAX_SPEED
+        self.WALK_SPEED = WALK_SPEED
         self.vitesse = vitesse
         self.animation_frame = animation_frame
         self.jump_authorized = jump_authorized
@@ -14,9 +18,10 @@ class Joueur:
         self.fenetre = fenetre
         self.spritesheet = Spritesheet(spritesheet_path)
         self.last_time = None
+        self.touches = None
 
     def input_handle(self):
-        pass
+        self.touches = pygame.key.get_pressed()
 
     def move(self, map_colliders):
         #calcule du delta time
@@ -29,7 +34,12 @@ class Joueur:
             self.last_time = t
 
         #calcule des déplacements
-        v_temp = [100*dt, 200*dt]
+        v_temp = [0, 100]
+        if self.touches[pygame.K_q]:  # Gauche
+            v_temp[0] -= self.WALK_SPEED * dt
+        elif self.touches[pygame.K_d]:  # Droite
+            v_temp[0] += self.WALK_SPEED * dt
+
 
         #limité la vitesse max
         if self.MAX_SPEED[0]*dt < v_temp[0]:
