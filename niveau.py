@@ -7,6 +7,7 @@ import os
 import json
 import pygame
 
+
 class Niveau:
 
     def __init__(self, name, entities_path, data_path, path_image_fond, data_joueur, fenetre):
@@ -53,9 +54,8 @@ class Niveau:
         for layers in data["layers"]:
             if layers["name"] ==  "collision":
                 for n, tile_value in enumerate(layers["data"]):
-                    if tile_value > 0:
-                        print(((n-n%data["tilewidth"])/data["tilewidth"])*data["tileheight"])
-                        self.colliders.append(Collision([n%data["tilewidth"]*data["tilewidth"], int((n-n%data["tilewidth"])/data["tilewidth"])*data["tileheight"]], [data["tilewidth"], data["tileheight"]]))
+                    if tile_value > 0 :
+                        self.colliders.append(Collision([n%data["width"]*data["tilewidth"], int((n-n%data["width"])/data["width"])*data["tileheight"]], [data["tilewidth"], data["tileheight"]]))
 
     def pre_run(self):
         #charger l'image de fond
@@ -116,7 +116,6 @@ if __name__ == "__main__":
     #test fenetre
 
     niveau.pre_run()
-
     running = True
     while running:
         for event in pygame.event.get():
