@@ -115,13 +115,21 @@ if __name__ == "__main__":
 
     #test fenetre
 
+    clock = pygame.time.Clock()
+
     niveau.pre_run()
+    police = pygame.font.Font(None, 36)
     running = True
     while running:
+        dt = clock.tick() / 1000
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
         niveau.run()
+
+        fps = int(clock.get_fps())
+        texte_fps = police.render(f"FPS: {fps}", True, (100, 50, 200))
+        screen.blit(texte_fps, (10, 10))
 
         pygame.display.flip()
 

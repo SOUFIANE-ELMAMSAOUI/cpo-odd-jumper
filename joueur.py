@@ -7,7 +7,7 @@ from spritesheet import Spritesheet
 
 
 class Joueur:
-    def __init__(self, MAX_SPEED = [800, 1500], WALK_SPEED = 500, vitesse = [0, 0], animation_frame = 0, falling = True, fenetre = None, spritesheet_path = ""):
+    def __init__(self, MAX_SPEED = [1000, 2000], WALK_SPEED = 850, vitesse = [0, 0], animation_frame = 0, falling = True, fenetre = None, spritesheet_path = ""):
         self.MAX_SPEED = MAX_SPEED
         self.WALK_SPEED = WALK_SPEED
         self.vitesse = vitesse
@@ -18,7 +18,7 @@ class Joueur:
         self.spritesheet = Spritesheet(spritesheet_path)
         self.last_time = None
         self.touches = None
-        self.gravity = 500
+        self.gravity = 100
         self.falling = True
 
     def input_handle(self):
@@ -42,10 +42,9 @@ class Joueur:
             v_temp[0] += self.WALK_SPEED * dt
 
         if self.touches[pygame.K_SPACE] and not self.falling: #sauter
-            v_temp[1] = -6*self.gravity * dt
+            v_temp[1] -= 40*self.gravity*dt
 
         v_temp[1] += self.gravity * dt
-        v_wanted = v_temp
 
         #limité la vitesse max
         if self.MAX_SPEED[0]*dt < v_temp[0]:
@@ -69,13 +68,6 @@ class Joueur:
         self.collision.position[0] += self.vitesse[0]
         self.collision.position[1] += self.vitesse[1]
 
-
-
-
-
-
-    def animation(self):
-        pass
 
     def show(self):
         self.spritesheet.image.draw(self.fenetre, (self.collision.position))

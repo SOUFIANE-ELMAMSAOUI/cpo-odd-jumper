@@ -21,7 +21,7 @@ clock = pygame.time.Clock()
 continuer = True
 while continuer:
     # Calcul du delta time
-    dt = clock.tick(60) / 1000  # Convertir en secondes
+    dt = clock.tick() / 1000  # Convertir en secondes
 
     # Gestion des événements
     for evenement in pygame.event.get():
