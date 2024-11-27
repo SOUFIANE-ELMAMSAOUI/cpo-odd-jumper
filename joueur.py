@@ -7,18 +7,19 @@ from spritesheet import Spritesheet
 
 
 class Joueur:
-    def __init__(self, MAX_SPEED = [400, 400], WALK_SPEED = 200, vitesse = [0, 0], animation_frame = 0, jump_authorized = True, fenetre = None, spritesheet_path = ""):
+    def __init__(self, MAX_SPEED = [800, 1500], WALK_SPEED = 500, vitesse = [0, 0], animation_frame = 0, falling = True, fenetre = None, spritesheet_path = ""):
         self.MAX_SPEED = MAX_SPEED
         self.WALK_SPEED = WALK_SPEED
         self.vitesse = vitesse
         self.animation_frame = animation_frame
-        self.jump_authorized = jump_authorized
-        self.jumping = False
+        self.falling = falling
         self.collision = Collision([200,100],[50,100])
         self.fenetre = fenetre
         self.spritesheet = Spritesheet(spritesheet_path)
         self.last_time = None
         self.touches = None
+        self.gravity = 500
+        self.falling = True
 
     def input_handle(self):
         self.touches = pygame.key.get_pressed()
@@ -34,12 +35,17 @@ class Joueur:
             self.last_time = t
 
         #calcule des déplacements
-        v_temp = [0, 100]
+        v_temp = [0, self.vitesse[1]]
         if self.touches[pygame.K_q]:  # Gauche
             v_temp[0] -= self.WALK_SPEED * dt
         elif self.touches[pygame.K_d]:  # Droite
             v_temp[0] += self.WALK_SPEED * dt
 
+        if self.touches[pygame.K_SPACE] and not self.falling: #sauter
+            v_temp[1] = -6*self.gravity * dt
+
+        v_temp[1] += self.gravity * dt
+        v_wanted = v_temp
 
         #limité la vitesse max
         if self.MAX_SPEED[0]*dt < v_temp[0]:
@@ -55,9 +61,18 @@ class Joueur:
             if v_collid[1] < v_temp[1]:
                 v_temp[1] = v_collid[1]
 
+        #autorizé le saut
+        self.falling = (v_temp[1] != 0)
+
         #changement de la position
-        self.collision.position[0] += v_temp[0]
-        self.collision.position[1] += v_temp[1]
+        self.vitesse = v_temp
+        self.collision.position[0] += self.vitesse[0]
+        self.collision.position[1] += self.vitesse[1]
+
+
+
+
+
 
     def animation(self):
         pass

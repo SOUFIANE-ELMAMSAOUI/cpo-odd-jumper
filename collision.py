@@ -44,7 +44,7 @@ class Collision:
                 if v[1] > 0:  # Mouvement vers le haut
                     v[1] = c.position[1] - (self.position[1] + self.size[1])
                 elif v[1] < 0:  # Mouvement vers le bas
-                    v[1] = c.position[1] + c.size[1] - self.position[1]
+                    v[1] = c.position[1] + c.size[1] - self.position[1] + 0.01
         return v
 
 
