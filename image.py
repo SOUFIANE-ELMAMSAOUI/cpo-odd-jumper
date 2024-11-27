@@ -9,7 +9,7 @@ class Image:
     def load_image(self):
             self.path = os.path.join("Image",self.path)
             try:
-                self.image = pygame.image.load(self.path)
+                self.image = pygame.image.load(self.path).convert()
                 print(f"Image chargée depuis : {self.path}")
             except pygame.error as e:
                 print(f"Erreur lors du chargement de l'image : {self.path} - {e}")

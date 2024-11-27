@@ -1,6 +1,5 @@
 import pygame
 from menu import Menu
-#from joueur import Joueur
 
 class Jeu:
     def __init__(self):
@@ -50,6 +49,10 @@ class Jeu:
                 #menu des badges
                 self.loop, self.etat = self.menu_badge.run()
 
+
+            elif self.etat == 100:
+                #code temporaire
+                pass
 
             #on update l'écran avec la nouvelle frame
             pygame.display.update()

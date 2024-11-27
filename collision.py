@@ -16,7 +16,7 @@ class Collision:
 
     def test_collision_dyn(self, c, vitesse):
     # Clone de la vitesse pour éviter de modifier l'original
-        v = vitesse[:]
+        v = vitesse
 
     # Collision sur l'axe X
         if (
@@ -44,7 +44,7 @@ class Collision:
                 if v[1] > 0:  # Mouvement vers le haut
                     v[1] = c.position[1] - (self.position[1] + self.size[1])
                 elif v[1] < 0:  # Mouvement vers le bas
-                    v[1] = c.position[1] + c.size[1] - self.position[1]
+                    v[1] = c.position[1] + c.size[1] - self.position[1] + 0.01
         return v
 
 
@@ -54,7 +54,7 @@ if __name__ == "__main__":
     c2 = Collision(position=[20, 20], size=[2, 2])
 
     # Définition de la vitesse initiale
-    vitesse_c2 = [3,3]  # c2 se déplace vers la droite
+    vitesse_c2 = [0,3]  # c2 se déplace vers la droite
 
     for step in range(10):
         print(f"\nÉtape {step + 1}:")
