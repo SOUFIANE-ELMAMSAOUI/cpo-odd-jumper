@@ -63,13 +63,13 @@ class Niveau:
         #charger le spritesheet du joueur
         self.joueur.spritesheet.image.load_image()
 
-    def run(self):
+    def run(self, dt):
         #boucle de simulation pour un niveau
 
         #game input
         self.joueur.input_handle()
         #game physique : movements etc
-        self.joueur.move(self.colliders)
+        self.joueur.move(self.colliders, dt)
         #affichager des images dans le plan du fond (ex :niveau)
         self.show()
         #affichage des images dans l'avant plan (ex: joueur, entité)
@@ -125,7 +125,7 @@ if __name__ == "__main__":
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
-        niveau.run()
+        niveau.run(dt)
 
         fps = int(clock.get_fps())
         texte_fps = police.render(f"FPS: {fps}", True, (100, 50, 200))

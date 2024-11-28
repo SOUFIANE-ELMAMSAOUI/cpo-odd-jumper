@@ -30,18 +30,10 @@ class Joueur:
     def input_handle(self):
         self.touches = pygame.key.get_pressed()
 
-    def move(self, map_colliders):
-        #calcule du delta time
-        t = time.time()
-        if self.last_time == None:
-            dt = 0
-            self.last_time = t
-        else:
-            dt = t - self.last_time
-            self.last_time = t
-
+    def move(self, map_colliders, dt):
         #calcule des déplacements
         v_temp = [0,0]
+
         #calcule pour x
         if self.touches[pygame.K_q]:
             self.acceleration[0] = -self.WALK_SPEED
@@ -82,6 +74,7 @@ class Joueur:
                 v_temp[0] = v_collid[0]
             if v_collid[1] < v_temp[1]:
                 v_temp[1] = v_collid[1]
+            
 
         #autorizé le saut
 
