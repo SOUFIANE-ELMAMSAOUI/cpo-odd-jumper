@@ -1,25 +1,31 @@
 import time
 
 import pygame
+from pygame import K_SPACE
 
 from collision import Collision
 from spritesheet import Spritesheet
 
 
 class Joueur:
-    def __init__(self, MAX_SPEED = [1000, 2000], WALK_SPEED = 850, vitesse = [0, 0], animation_frame = 0, falling = True, fenetre = None, spritesheet_path = ""):
+    def __init__(self, MAX_SPEED = [1000, 1500], WALK_SPEED = 1200, vitesse = [0, 0], animation_frame = 0, falling = True, fenetre = None, spritesheet_path = ""):
         self.MAX_SPEED = MAX_SPEED
         self.WALK_SPEED = WALK_SPEED
-        self.vitesse = vitesse
         self.animation_frame = animation_frame
-        self.falling = falling
-        self.collision = Collision([200,100],[50,100])
+
         self.fenetre = fenetre
         self.spritesheet = Spritesheet(spritesheet_path)
-        self.last_time = None
-        self.touches = None
-        self.gravity = 100
-        self.falling = True
+
+        #attribus pour les déplacements/mouvements
+        self.last_time = None #pour calcule de dt
+        self.collision = Collision([200, 100], [50, 100])
+        self.gravity = 2000
+        self.friction = -0.1
+        self.acceleration = [0, self.gravity]
+        self.velocity = [0, 0]
+        self.touches = pygame.key.get_pressed()
+        self.jump_authorized = False
+
 
     def input_handle(self):
         self.touches = pygame.key.get_pressed()
@@ -35,22 +41,41 @@ class Joueur:
             self.last_time = t
 
         #calcule des déplacements
-        v_temp = [0, self.vitesse[1]]
-        if self.touches[pygame.K_q]:  # Gauche
-            v_temp[0] -= self.WALK_SPEED * dt
-        elif self.touches[pygame.K_d]:  # Droite
-            v_temp[0] += self.WALK_SPEED * dt
+        v_temp = [0,0]
+        #calcule pour x
+        if self.touches[pygame.K_q]:
+            self.acceleration[0] = -self.WALK_SPEED
+        elif self.touches[pygame.K_d]:
+            self.acceleration[0] = self.WALK_SPEED
+        else:
+            self.acceleration[0] = 0
+            self.velocity[0] = 0
+        if (self.velocity[0] < 0 and self.acceleration[0] > 0) or (self.velocity[0] > 0 and self.acceleration[0] < 0):
+            self.velocity[0] = 0
 
-        if self.touches[pygame.K_SPACE] and not self.falling: #sauter
-            v_temp[1] -= 40*self.gravity*dt
+        self.velocity[0] += self.acceleration[0] * dt
 
-        v_temp[1] += self.gravity * dt
 
-        #limité la vitesse max
-        if self.MAX_SPEED[0]*dt < v_temp[0]:
-            v_temp[0] = self.MAX_SPEED[0]*dt
-        if self.MAX_SPEED[1]*dt < v_temp[1]:
-            v_temp[1] = self.MAX_SPEED[1]*dt
+        if self.MAX_SPEED[0] < self.velocity[0]:
+            self.velocity[0] = self.MAX_SPEED[0]
+        elif -self.MAX_SPEED[0] > self.velocity[0]:
+            self.velocity[0] = -self.MAX_SPEED[0]
+
+        v_temp[0] += self.velocity[0] * dt + (self.acceleration[0] * 0.5) * (dt * dt)
+
+        #calcule pour y
+        self.velocity[1] += self.acceleration[1] * dt
+        if self.MAX_SPEED[1] < self.velocity[1]:
+            self.velocity[1] = self.MAX_SPEED[1]
+
+            #saut
+        if self.touches[K_SPACE] and self.jump_authorized:
+            self.velocity[1]-=1000
+
+        v_temp[1] += self.velocity[1] * dt + (self.acceleration[1] * .5) * (dt * dt)
+
+
+
 
         #calule des collisions avec la map puis les entitées
         for c in map_colliders:
@@ -61,12 +86,14 @@ class Joueur:
                 v_temp[1] = v_collid[1]
 
         #autorizé le saut
-        self.falling = (v_temp[1] != 0)
 
+        self.jump_authorized = (v_temp[1] == 0 and self.velocity[1] >0)
+        if v_temp[1] == 0:
+            self.velocity[1]=0
         #changement de la position
-        self.vitesse = v_temp
-        self.collision.position[0] += self.vitesse[0]
-        self.collision.position[1] += self.vitesse[1]
+
+        self.collision.position[0] += v_temp[0]
+        self.collision.position[1] += v_temp[1]
 
 
     def show(self):
