@@ -75,8 +75,6 @@ class Joueur:
         v_temp[1] += self.velocity[1] * dt + (self.acceleration[1] * .5) * (dt * dt)
 
 
-
-
         #calule des collisions avec la map puis les entitées
         for c in map_colliders:
             v_collid = self.collision.test_collision_dyn(c, v_temp)
