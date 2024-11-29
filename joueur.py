@@ -1,5 +1,3 @@
-import time
-
 import pygame
 from pygame import K_SPACE
 
@@ -8,7 +6,7 @@ from spritesheet import Spritesheet
 
 
 class Joueur:
-    def __init__(self, MAX_SPEED = [1000, 1500], WALK_SPEED = 1200, vitesse = [0, 0], animation_frame = 0, falling = True, fenetre = None, spritesheet_path = ""):
+    def __init__(self, MAX_SPEED = [1000, 1500], WALK_SPEED = 1200, animation_frame = 0, fenetre = None, spritesheet_path = ""):
         self.MAX_SPEED = MAX_SPEED
         self.WALK_SPEED = WALK_SPEED
         self.animation_frame = animation_frame
@@ -42,7 +40,7 @@ class Joueur:
         else:
             self.acceleration[0] = 0
             self.velocity[0] = 0
-        if (self.velocity[0] < 0 and self.acceleration[0] > 0) or (self.velocity[0] > 0 and self.acceleration[0] < 0):
+        if (self.velocity[0] < 0 < self.acceleration[0]) or (self.velocity[0] > 0 > self.acceleration[0]):
             self.velocity[0] = 0
 
         self.velocity[0] += self.acceleration[0] * dt
@@ -74,6 +72,8 @@ class Joueur:
                 v_temp[0] = v_collid[0]
             if v_collid[1] < v_temp[1]:
                 v_temp[1] = v_collid[1]
+            if v_temp == [0,0]:
+                break
             
 
         #autorizé le saut
@@ -81,6 +81,8 @@ class Joueur:
         self.jump_authorized = (v_temp[1] == 0 and self.velocity[1] >0)
         if v_temp[1] == 0:
             self.velocity[1]=0
+        if v_temp[0] == 0:
+            self.velocity[0] = 0
         #changement de la position
 
         self.collision.position[0] += v_temp[0]
@@ -88,6 +90,6 @@ class Joueur:
 
 
     def show(self):
-        self.spritesheet.image.draw(self.fenetre, (self.collision.position))
+        self.spritesheet.image.draw(self.fenetre, self.collision.position)
 
 

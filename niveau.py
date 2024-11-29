@@ -128,7 +128,7 @@ if __name__ == "__main__":
         niveau.run(dt)
 
         fps = int(clock.get_fps())
-        texte_fps = police.render(f"FPS: {fps}", True, (100, 50, 200))
+        texte_fps = police.render(f"FPS: {fps}", True, (255, 100, 255))
         screen.blit(texte_fps, (10, 10))
 
         pygame.display.flip()
