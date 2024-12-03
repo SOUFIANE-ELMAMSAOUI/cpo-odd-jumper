@@ -28,6 +28,12 @@ Semaine 4:
 - finition des collisions.
 - Boucle de simulation de niveau
 
+Semaine 5:
+- ajout lien du menu avec le menu teste
+- création/affichage des entité 
+- ajout de possibilité que l'entité tue
+- ajout de possibilité que l'entité soit ramassable
+- recherche de tileset (cf lien en bas du readme) pour visuel
 
 
 
