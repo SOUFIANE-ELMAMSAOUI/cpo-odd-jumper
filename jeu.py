@@ -1,5 +1,9 @@
+import json
+
 import pygame
 from menu import Menu
+from niveau import Niveau
+
 
 class Jeu:
     def __init__(self):
@@ -26,12 +30,23 @@ class Jeu:
         self.menu_badge = Menu("./menu/menu_badge.json", 2, self.fenetre)
         self.menu_badge.create_data()
 
+        #créer niveau TEMPORAIRE
+        p = "./levels_data/level_test.json"
+        file = open(p, 'r')
+        d = json.load(file)
+
+        self.niveau0 = Niveau(d["name"], d["entities_path"], d["data_path"], d["path_image_fond"], d["joueur"]["spritesheet"],self.fenetre)
+
+
+
+
         self.loop = True
 
 
     def run(self):
         # boucle de simulation
         while self.loop:
+            dt = self.clock.tick() / 1000
 
             if self.etat == -1:
                 #quitté
@@ -50,9 +65,17 @@ class Jeu:
                 self.loop, self.etat = self.menu_badge.run()
 
 
-            elif self.etat == 100:
-                #code temporaire
-                pass
+            elif self.etat == 10000:
+                #prerun niveau 0
+                self.niveau0.load_data_level()
+                self.niveau0.create_colliders()
+                self.niveau0.pre_run()
+                self.etat = 10001
+
+            elif self.etat == 10001:
+                self.loop, self.etat = self.niveau0.run(dt, self.etat)
+
+
 
             #on update l'écran avec la nouvelle frame
             pygame.display.update()
