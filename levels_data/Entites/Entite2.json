@@ -1,0 +1,9 @@
+{
+  "MAX_SPEED": [10, 10],
+  "vitesse": [0, 0],
+  "name": "entite2",
+  "path_image": "entite1.png",
+  "position": [25, 64],
+  "size": [32, 32]
+
+}
