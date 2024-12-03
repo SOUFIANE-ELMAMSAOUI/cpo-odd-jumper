@@ -14,7 +14,7 @@ class Jeu:
         # définir les paramètre de la fenetre
         self.window_size = (1920, 1080)
         self.clock = pygame.time.Clock()
-        self.clock.tick(120)
+
 
         #créer la fenetre
         self.fenetre = pygame.display.set_mode(self.window_size, pygame.FULLSCREEN)
@@ -36,8 +36,6 @@ class Jeu:
         d = json.load(file)
 
         self.niveau0 = Niveau(d["name"], d["entities_path"], d["data_path"], d["path_image_fond"], d["joueur"]["spritesheet"],self.fenetre)
-
-
 
 
         self.loop = True
@@ -74,6 +72,7 @@ class Jeu:
 
             elif self.etat == 10001:
                 self.loop, self.etat = self.niveau0.run(dt, self.etat)
+
 
 
 
