@@ -3,7 +3,8 @@
   "vitesse": [0, 0],
   "name": "entite2",
   "path_image": "entite1.png",
-  "position": [25, 64],
-  "size": [32, 32]
+  "position": [600, 400],
+  "size": [50, 50],
+  "harmful" : true
 
 }

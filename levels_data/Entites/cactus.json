@@ -1,0 +1,9 @@
+{
+  "MAX_SPEED": [10, 10],
+  "vitesse": [0, 0],
+  "name": "cactus",
+  "path_image": "cactus.png",
+  "position": [1500, 70],
+  "size": [32, 32],
+  "harmful" : true
+}

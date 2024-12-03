@@ -1,22 +1,22 @@
 import pygame
 from pygame import K_SPACE
-
+import copy
 from collision import Collision
 from spritesheet import Spritesheet
 
 
 class Joueur:
-    def __init__(self, MAX_SPEED = [1000, 1500], WALK_SPEED = 1200, animation_frame = 0, fenetre = None, spritesheet_path = ""):
+    def __init__(self, MAX_SPEED = [1000, 1500], WALK_SPEED = 1200, animation_frame = 0, fenetre = None, spritesheet_path = "",position = [200,100],position_init =[200,100]):
         self.MAX_SPEED = MAX_SPEED
         self.WALK_SPEED = WALK_SPEED
         self.animation_frame = animation_frame
 
         self.fenetre = fenetre
         self.spritesheet = Spritesheet(spritesheet_path)
-
+        self.position_init = position_init
         #attribus pour les déplacements/mouvements
         self.last_time = None #pour calcule de dt
-        self.collision = Collision([200, 100], [50, 100])
+        self.collision = Collision( position, [50, 100])
         self.gravity = 2000
         self.friction = -0.1
         self.acceleration = [0, self.gravity]
@@ -28,7 +28,7 @@ class Joueur:
     def input_handle(self):
         self.touches = pygame.key.get_pressed()
 
-    def move(self, map_colliders, dt):
+    def move(self, map_colliders, entities, dt):
         #calcule des déplacements
         v_temp = [0,0]
 
@@ -88,6 +88,11 @@ class Joueur:
         self.collision.position[0] += v_temp[0]
         self.collision.position[1] += v_temp[1]
 
+        for entity in entities:
+            if entity.harmful:
+                if entity.collision.test_collision_stat(self.collision):
+                    print("Collision avec l'entite",entity)
+                    self.collision.position =  copy.deepcopy(self.position_init)
 
     def show(self):
         self.spritesheet.image.draw(self.fenetre, self.collision.position)
