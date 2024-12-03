@@ -26,4 +26,22 @@ Semaine 3 :
 Semaine 4:
 - Animation spritesheet faite.
 - finition des collisions.
-- Boucle de simulation de niveau.
+- Boucle de simulation de niveau
+
+
+
+
+
+
+
+
+
+
+# Tileset
+
+Energie : 
+
+https://free-game-assets.itch.io/free-green-zone-tileset-pixel-art
+https://free-game-assets.itch.io/power-station-free-tileset-pixel-art
+
+Poverty : https://free-game-assets.itch.io/free-exclusion-zone-tileset-pixel-art

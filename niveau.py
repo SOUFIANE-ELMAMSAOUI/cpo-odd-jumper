@@ -34,7 +34,7 @@ class Niveau:
 
                 with open(file_path, 'r') as file:
                     entity_data = json.load(file)
-                entity = Entity(MAX_SPEED=entity_data["MAX_SPEED"], vitesse=entity_data["vitesse"], name = entity_data["name"], path_image = entity_data["path_image"], position = entity_data["position"])
+                entity = Entity(MAX_SPEED=entity_data["MAX_SPEED"], vitesse=entity_data["vitesse"], name = entity_data["name"], path_image = entity_data["path_image"], position = entity_data["position"],fenetre=self.fenetre)
 
                 self.entities.append(entity)
 
@@ -62,6 +62,10 @@ class Niveau:
         self.image_fond.load_image()
         #charger le spritesheet du joueur
         self.joueur.spritesheet.image.load_image()
+        for entity in self.entities:
+            entity.spritesheet.image.load_image()
+
+
 
     def run(self, dt, etat):
         #boucle de simulation pour un niveau
@@ -77,6 +81,9 @@ class Niveau:
         self.show()
         #affichage des images dans l'avant plan (ex: joueur, entité)
         self.joueur.show()
+
+        for entity in self.entities:
+            entity.animation()
 
         if False: #condition fin du niveau
             return (True, etat + 1)
@@ -106,7 +113,7 @@ if __name__ == "__main__":
     niveau.load_data_level()
 
     print(f"Nom du niveau : {niveau.name}")
-    print("Entités chargées :")
+    print("Entites chargées :")
     for entity in niveau.entities:
         print(f"Nom: {getattr(entity, 'name', 'N/A')}, MAX_SPEED: {getattr(entity, 'MAX_SPEED', 'N/A')}, collision: {getattr(entity, 'collision', 'N/A')}")
 
