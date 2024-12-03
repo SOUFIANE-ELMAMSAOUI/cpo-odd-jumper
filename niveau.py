@@ -67,8 +67,11 @@ class Niveau:
 
 
 
-    def run(self, dt):
+    def run(self, dt, etat):
         #boucle de simulation pour un niveau
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                return (False, 0)
 
         #game input
         self.joueur.input_handle()
@@ -78,8 +81,13 @@ class Niveau:
         self.show()
         #affichage des images dans l'avant plan (ex: joueur, entité)
         self.joueur.show()
+
         for entity in self.entities:
             entity.animation()
+
+        if False: #condition fin du niveau
+            return (True, etat + 1)
+        return True, etat
 
     def show(self):
         self.image_fond.draw(self.fenetre,(0,0))
@@ -127,10 +135,7 @@ if __name__ == "__main__":
     running = True
     while running:
         dt = clock.tick() / 1000
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                running = False
-        niveau.run(dt)
+        running, etat = niveau.run(dt, 0)
 
         fps = int(clock.get_fps())
         texte_fps = police.render(f"FPS: {fps}", True, (255, 100, 255))
