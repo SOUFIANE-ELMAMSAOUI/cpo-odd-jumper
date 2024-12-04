@@ -5,8 +5,8 @@
   "path_image": "entite1.png",
   "position": [255, 255],
   "size": [50, 50],
-  "harmful" : true
-
+  "harmful" : true,
+  "collect" : false
 }
 
 

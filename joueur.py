@@ -25,8 +25,13 @@ class Joueur:
         self.jump_authorized = False
 
 
+
+        self.items = []
+
+
     def input_handle(self):
         self.touches = pygame.key.get_pressed()
+
 
     def move(self, map_colliders, entities, dt):
         #calcule des déplacements
@@ -88,11 +93,18 @@ class Joueur:
         self.collision.position[0] += v_temp[0]
         self.collision.position[1] += v_temp[1]
 
-        for entity in entities:
+        for n,entity in enumerate(entities) :
             if entity.harmful:
                 if entity.collision.test_collision_stat(self.collision):
                     print("Collision avec l'entite",entity)
                     self.collision.position =  copy.deepcopy(self.position_init)
+            if self.touches[pygame.K_e] :
+                if entity.collect : 
+                    if entity.collision.test_collision_stat(self.collision) :
+                        self.items.append(entity.name)
+                        entities.pop(n)
+                        #print("liste entities :", entities, "\nliste items :", self.items)
+
 
     def show(self):
         self.spritesheet.image.draw(self.fenetre, self.collision.position)
