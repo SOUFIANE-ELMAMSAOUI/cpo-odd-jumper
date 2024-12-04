@@ -2,7 +2,7 @@
   "MAX_SPEED": [10, 10],
   "vitesse": [0, 0],
   "name": "entite2",
-  "path_image": "entite1.png",
+  "path_image": "default_collect_entity.png",
   "position": [600, 400],
   "size": [50, 50],
   "harmful" : false,

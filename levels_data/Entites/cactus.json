@@ -2,9 +2,9 @@
   "MAX_SPEED": [10, 10],
   "vitesse": [0, 0],
   "name": "cactus",
-  "path_image": "cactus.png",
+  "path_image": "default_killing_entity.png",
   "position": [1500, 70],
-  "size": [32, 32],
+  "size": [50, 50],
   "harmful" : true,
   "collect" : false
 }

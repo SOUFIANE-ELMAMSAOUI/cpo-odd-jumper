@@ -2,12 +2,9 @@
   "MAX_SPEED": [10, 10],
   "vitesse": [0, 0],
   "name": "entite1",
-  "path_image": "entite1.png",
-  "position": [255, 255],
+  "path_image": "default_killing_entity.png",
+  "position": [100, 255],
   "size": [50, 50],
   "harmful" : true,
   "collect" : false
 }
-
-
-
