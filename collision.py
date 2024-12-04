@@ -6,10 +6,10 @@ class Collision:
     def test_collision_stat(self, c):
         # Vérification de collision statique
         if (
-            self.position[0] <= c.position[0] + c.size[0]
-            and self.position[0] + self.size[0] >= c.position[0]
-            and self.position[1] <= c.position[1] + c.size[1]
-            and self.position[1] + self.size[1] >= c.position[1]
+            self.position[0] < c.position[0] + c.size[0]
+            and self.position[0] + self.size[0] > c.position[0]
+            and self.position[1] < c.position[1] + c.size[1]
+            and self.position[1] + self.size[1] > c.position[1]
         ):
             return True
         return False

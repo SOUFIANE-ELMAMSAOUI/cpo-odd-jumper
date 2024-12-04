@@ -34,7 +34,7 @@ class Niveau:
 
                 with open(file_path, 'r') as file:
                     entity_data = json.load(file)
-                entity = Entity(MAX_SPEED=entity_data["MAX_SPEED"], collect = entity_data["collect"], vitesse=entity_data["vitesse"], name = entity_data["name"], path_image = entity_data["path_image"], position = entity_data["position"],fenetre=self.fenetre)
+                entity = Entity(MAX_SPEED=entity_data["MAX_SPEED"], vitesse=entity_data["vitesse"], harmful=entity_data["harmful"], collect = entity_data["collect"], name = entity_data["name"], path_image = entity_data["path_image"], position = entity_data["position"],fenetre=self.fenetre)
 
                 self.entities.append(entity)
 
