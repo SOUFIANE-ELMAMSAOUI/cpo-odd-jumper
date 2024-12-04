@@ -80,10 +80,13 @@ class Niveau:
         #affichager des images dans le plan du fond (ex :niveau)
         self.show()
         #affichage des images dans l'avant plan (ex: joueur, entité)
-        self.joueur.show()
 
         for entity in self.entities:
             entity.animation()
+
+        self.joueur.show()
+
+
 
         if False: #condition fin du niveau
             return (True, etat + 1)
