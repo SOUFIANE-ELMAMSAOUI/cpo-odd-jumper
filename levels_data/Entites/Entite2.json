@@ -3,7 +3,8 @@
   "vitesse": [0, 0],
   "name": "entite2",
   "path_image": "entite1.png",
-  "position": [25, 64],
-  "size": [32, 32]
-
+  "position": [1300, 900],
+  "size": [50, 50],
+  "collect" : true
 }
+
