@@ -102,7 +102,6 @@ class Joueur:
                     self.velocity = [0,0]
             if self.touches[pygame.K_e] :
                 if entity.collect :
-                    print("entité :", entity.collision.position, ";", entity.collision.size, "\njoueur :",
                           self.collision.position, ";", self.collision.size, "\n")
                     if entity.collision.test_collision_stat(self.collision) :
                         self.items.append(entity.name)
