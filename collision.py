@@ -50,9 +50,13 @@ class Collision:
 
 if __name__ == "__main__":
     # Initialisation des objets
-    c1 = Collision(position=[20, 40], size=[2, 2])
-    c2 = Collision(position=[20, 20], size=[2, 2])
+    c1 = Collision(position=[100, 100], size=[100, 100])
+    c2 = Collision(position=[150, 150], size=[100, 100])
 
+
+    print(c1.test_collision_stat(c2))
+
+    """
     # Définition de la vitesse initiale
     vitesse_c2 = [0,3]  # c2 se déplace vers la droite
 
@@ -67,4 +71,4 @@ if __name__ == "__main__":
 
         # Mise à jour de la position de c2 avec la vitesse ajustée
         c2.position[0] += v_adjusted[0]
-        c2.position[1] += v_adjusted[1]
+        c2.position[1] += v_adjusted[1]"""

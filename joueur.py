@@ -93,17 +93,21 @@ class Joueur:
         self.collision.position[0] += v_temp[0]
         self.collision.position[1] += v_temp[1]
 
-        for n,entity in enumerate(entities) :
+
+        n_entities_poped = 0
+        for n, entity in enumerate(entities) :
             if entity.harmful:
                 if entity.collision.test_collision_stat(self.collision):
-                    print("Collision avec l'entite",entity)
                     self.collision.position =  copy.deepcopy(self.position_init)
+                    self.velocity = [0,0]
             if self.touches[pygame.K_e] :
-                if entity.collect : 
+                if entity.collect :
+                    print("entité :", entity.collision.position, ";", entity.collision.size, "\njoueur :",
+                          self.collision.position, ";", self.collision.size, "\n")
                     if entity.collision.test_collision_stat(self.collision) :
                         self.items.append(entity.name)
-                        entities.pop(n)
-                        #print("liste entities :", entities, "\nliste items :", self.items)
+                        entities.pop(n-n_entities_poped)
+                        n_entities_poped+=1
 
 
     def show(self):
