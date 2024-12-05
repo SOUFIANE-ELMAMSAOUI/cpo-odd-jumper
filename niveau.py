@@ -22,6 +22,7 @@ class Niveau:
         self.joueur = Joueur(fenetre=fenetre, spritesheet_path=data_joueur)
 
     def load_data_level(self):
+        #chargement des entités
         entities_dir = os.path.join("levels_data", self.entities_path)
 
         if not os.path.isdir(entities_dir):
@@ -50,7 +51,7 @@ class Niveau:
 
                 self.entities.append(entity)
 
-
+        #chargement des objectif
         objectif_path = os.path.join(entities_dir, "objectif.json")
         if os.path.isfile(objectif_path):
             with open(objectif_path, 'r') as file:
@@ -58,6 +59,7 @@ class Niveau:
                 self.objectif = Objectif(description=objectif_data["description"], recompense=objectif_data["recompense"])
 
         print(f"{len(self.entities)} entités chargées avec succès.")
+
 
     def create_colliders(self):
         file = open(self.data_path, 'r')
@@ -76,6 +78,8 @@ class Niveau:
         self.joueur.spritesheet.image.load_image()
         for entity in self.entities:
             entity.spritesheet.image.load_image()
+        #on met le joueur a sa position de base au cas ou il a changer
+        self.joueur.collision.position = self.joueur.position_init[:]
 
 
 
@@ -97,9 +101,21 @@ class Niveau:
             entity.animation()
 
 
-        if False: #condition fin du niveau
-            return (True, etat + 1)
-        return True, etat
+
+
+        #vérification de la fin du niveau
+        for entity in  self.entities:
+            if entity.take_items:
+                if len(entity.wanted_items) > 0:
+                    return True, etat
+        return (True, (etat + 1))
+
+    def post_run(self):
+        self.entities = []
+        self.colliders = []
+        self.image_fond.unload_image()
+
+
 
     def show(self):
         self.image_fond.draw(self.fenetre,(0,0))

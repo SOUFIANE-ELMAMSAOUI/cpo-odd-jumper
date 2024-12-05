@@ -7,16 +7,15 @@ class Image:
         self.image = None                    #pygame.image.load(path)
 
     def load_image(self):
-            self.path = os.path.join("Image",self.path)
             try:
-                self.image = pygame.image.load(self.path).convert()
-                print(f"Image chargée depuis : {self.path}")
+                self.image = pygame.image.load(os.path.join("Image",self.path)).convert()
+                #print(f"Image chargée depuis : {self.path}")
             except pygame.error as e:
                 print(f"Erreur lors du chargement de l'image : {self.path} - {e}")
 
     def unload_image(self):
             if self.image:
-                print(f"Image déchargée : {self.path}")
+                #print(f"Image déchargée : {self.path}")
                 self.image = None
             else:
                 print("Aucune image à décharger.")

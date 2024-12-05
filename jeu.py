@@ -71,7 +71,17 @@ class Jeu:
                 self.etat = 10001
 
             elif self.etat == 10001:
+                #boucle pour le niveau
                 self.loop, self.etat = self.niveau0.run(dt, self.etat)
+
+            elif self.etat == 10002:
+                #décharger les images du niveau
+                self.niveau0.post_run()
+                self.etat = 0
+
+            elif self.etat == 10003:
+                #afficher le résultat
+                pass
 
 
 
