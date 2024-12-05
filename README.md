@@ -29,7 +29,7 @@ Semaine 4:
 - Boucle de simulation de niveau
 
 Semaine 5:
-- ajout lien du menu avec le menu teste
+- ajout lien du menu avec le niveau teste
 - création/affichage des entité 
 - ajout de possibilité que l'entité tue
 - ajout de possibilité que l'entité soit ramassable
