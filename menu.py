@@ -2,7 +2,7 @@ import json
 import pygame
 from bouton import Bouton
 from image import Image
-
+from sounds import Sounds
 
 class Menu:
     def __init__(self, path, etat, fenetre):
@@ -12,7 +12,7 @@ class Menu:
         self.font = pygame.font.Font(None, 24)
         self.etat = etat
         self.image = None
-
+        self.sounds = Sounds()
 
     def create_data(self):
         file = open(self.path, 'r')
@@ -23,6 +23,9 @@ class Menu:
             self.image = Image(data["background"])
             self.image.load_image()
 
+        if "background2" in data:
+            self.image = Image(data["background2"])
+            self.image.load_image()
 
     def run(self):
         #on affiche une image si il y en a une, autrement on affiche un fond uni gris
@@ -39,6 +42,7 @@ class Menu:
             if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                 for b in self.boutons:
                     if b.button_rect.collidepoint(event.pos):
+                        self.sounds.play('click', loop=False, volume=1.0)
                         return (True, b.command)
         # on affiche les animation des boutons
         for b in self.boutons:

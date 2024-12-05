@@ -3,6 +3,7 @@ from pygame import K_SPACE
 import copy
 from collision import Collision
 from spritesheet import Spritesheet
+from sounds import Sounds
 
 
 class Joueur:
@@ -23,6 +24,7 @@ class Joueur:
         self.velocity = [0, 0]
         self.touches = pygame.key.get_pressed()
         self.jump_authorized = False
+        self.sounds = Sounds()
 
 
 
@@ -36,13 +38,18 @@ class Joueur:
     def move(self, map_colliders, entities, dt):
         #calcule des déplacements
         v_temp = [0,0]
-
+        is_moving = False
+        is_jumping = False
         #calcule pour x
         if self.touches[pygame.K_q]:
             self.acceleration[0] = -self.WALK_SPEED
+            is_moving = True
+
         elif self.touches[pygame.K_d]:
             self.acceleration[0] = self.WALK_SPEED
+            is_moving = True
         else:
+
             self.acceleration[0] = 0
             self.velocity[0] = 0
         if (self.velocity[0] < 0 < self.acceleration[0]) or (self.velocity[0] > 0 > self.acceleration[0]):
@@ -66,6 +73,9 @@ class Joueur:
             #saut
         if self.touches[K_SPACE] and self.jump_authorized:
             self.velocity[1]-=1000
+            self.sounds.play('jump')
+            self.sounds.stop('walk')
+            is_jumping = True
 
         v_temp[1] += self.velocity[1] * dt + (self.acceleration[1] * .5) * (dt * dt)
 
@@ -100,17 +110,16 @@ class Joueur:
                 if entity.collision.test_collision_stat(self.collision):
                     self.collision.position =  copy.deepcopy(self.position_init)
                     self.velocity = [0,0]
-
+                    self.sounds.play('pain')
             if entity.collect :
                 if self.touches[pygame.K_e]:
                     if entity.collision.test_collision_stat(self.collision) :
                         self.items.append(entity.name)
                         entities.pop(n-n_entities_poped)
                         n_entities_poped+=1
-
+                        self.sounds.play('collect')
             if entity.talking :
                 entity.is_talking = entity.talking_collision.test_collision_stat(self.collision)
-
 
 
     def show(self):
