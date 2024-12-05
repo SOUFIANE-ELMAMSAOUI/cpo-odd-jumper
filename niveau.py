@@ -78,8 +78,10 @@ class Niveau:
         self.joueur.spritesheet.image.load_image()
         for entity in self.entities:
             entity.spritesheet.image.load_image()
-        #on met le joueur a sa position de base au cas ou il a changer
+        #on met le joueur a sa position/vitesse de base au cas ou il a changer
         self.joueur.collision.position = self.joueur.position_init[:]
+        self.joueur.velocity = [0,0]
+
 
 
 

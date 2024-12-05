@@ -1,0 +1,17 @@
+{
+  "MAX_SPEED": [10, 10],
+  "vitesse": [0, 0],
+  "name": "entite5",
+  "path_image": "default_collect_entity.png",
+  "position": [100, 980],
+  "size": [50, 50],
+  "harmful" : false,
+  "collect" : true,
+    "talking" : {
+    "cond" : false
+  },
+  "taker" : {
+    "cond" : false
+  }
+}
+

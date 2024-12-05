@@ -12,6 +12,6 @@
   },
   "taker" : {
     "cond" : true,
-    "items" : ["entite2"]
+    "items" : ["entite2", "entite5"]
   }
 }

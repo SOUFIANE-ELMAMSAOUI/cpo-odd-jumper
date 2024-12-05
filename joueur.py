@@ -1,6 +1,6 @@
 import pygame
 from pygame import K_SPACE
-import copy
+
 from collision import Collision
 from spritesheet import Spritesheet
 
@@ -98,7 +98,7 @@ class Joueur:
         for n, entity in enumerate(entities) :
             if entity.harmful:
                 if entity.collision.test_collision_stat(self.collision):
-                    self.collision.position =  copy.deepcopy(self.position_init)
+                    self.collision.position =  self.position_init[:]
                     self.velocity = [0,0]
 
             if entity.collect :
