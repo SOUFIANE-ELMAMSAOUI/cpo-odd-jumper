@@ -100,12 +100,17 @@ class Joueur:
                 if entity.collision.test_collision_stat(self.collision):
                     self.collision.position =  copy.deepcopy(self.position_init)
                     self.velocity = [0,0]
-            if self.touches[pygame.K_e] :
-                if entity.collect :
+
+            if entity.collect :
+                if self.touches[pygame.K_e]:
                     if entity.collision.test_collision_stat(self.collision) :
                         self.items.append(entity.name)
                         entities.pop(n-n_entities_poped)
                         n_entities_poped+=1
+
+            if entity.talking :
+                entity.is_talking = entity.talking_collision.test_collision_stat(self.collision)
+
 
 
     def show(self):

@@ -34,7 +34,18 @@ class Niveau:
 
                 with open(file_path, 'r') as file:
                     entity_data = json.load(file)
-                entity = Entity(MAX_SPEED=entity_data["MAX_SPEED"], size=entity_data["size"], vitesse=entity_data["vitesse"], harmful=entity_data["harmful"], collect = entity_data["collect"], name = entity_data["name"], path_image = entity_data["path_image"], position = entity_data["position"],fenetre=self.fenetre)
+                entity = Entity(
+                    MAX_SPEED=entity_data["MAX_SPEED"],
+                    size=entity_data["size"],
+                    vitesse=entity_data["vitesse"],
+                    harmful=entity_data["harmful"],
+                    collect = entity_data["collect"],
+                    name = entity_data["name"],
+                    path_image = entity_data["path_image"],
+                    position = entity_data["position"],
+                    talking = entity_data["talking"],
+                    fenetre=self.fenetre
+                )
 
                 self.entities.append(entity)
 
@@ -80,12 +91,9 @@ class Niveau:
         #affichager des images dans le plan du fond (ex :niveau)
         self.show()
         #affichage des images dans l'avant plan (ex: joueur, entité)
-
+        self.joueur.show()
         for entity in self.entities:
             entity.animation()
-
-        self.joueur.show()
-
 
 
         if False: #condition fin du niveau

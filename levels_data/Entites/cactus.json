@@ -6,5 +6,8 @@
   "position": [1500, 70],
   "size": [50, 50],
   "harmful" : true,
-  "collect" : false
+  "collect" : false,
+  "talking" : {
+    "cond" : false
+  }
 }
