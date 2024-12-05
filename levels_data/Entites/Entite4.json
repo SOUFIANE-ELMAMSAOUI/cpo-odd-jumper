@@ -2,15 +2,16 @@
   "MAX_SPEED": [10, 10],
   "vitesse": [0, 0],
   "name": "entite1",
-  "path_image": "default_killing_entity.png",
-  "position": [100, 255],
+  "path_image": "default_taker_entity.png",
+  "position": [1500, 990],
   "size": [50, 50],
-  "harmful" : true,
+  "harmful" : false,
   "collect" : false,
   "talking" : {
     "cond" : false
   },
   "taker" : {
-    "cond" : false
+    "cond" : true,
+    "items" : ["entite2"]
   }
 }

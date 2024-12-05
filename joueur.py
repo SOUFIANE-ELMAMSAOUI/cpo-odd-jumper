@@ -111,6 +111,16 @@ class Joueur:
             if entity.talking :
                 entity.is_talking = entity.talking_collision.test_collision_stat(self.collision)
 
+            if entity.take_items:
+                if self.touches[pygame.K_e]:
+                    if entity.collision.test_collision_stat(self.collision):
+                        for item in entity.wanted_items[:]:
+                            if item in self.items:
+                                entity.wanted_items.remove(item)
+                                self.items.remove(item)
+
+
+
 
 
     def show(self):

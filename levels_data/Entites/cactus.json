@@ -9,5 +9,8 @@
   "collect" : false,
   "talking" : {
     "cond" : false
+  },
+  "taker" : {
+    "cond" : false
   }
 }

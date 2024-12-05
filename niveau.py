@@ -44,6 +44,7 @@ class Niveau:
                     path_image = entity_data["path_image"],
                     position = entity_data["position"],
                     talking = entity_data["talking"],
+                    taker = entity_data["taker"],
                     fenetre=self.fenetre
                 )
 
