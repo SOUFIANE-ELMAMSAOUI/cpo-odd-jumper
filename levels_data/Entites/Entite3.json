@@ -1,7 +1,7 @@
 {
   "MAX_SPEED": [10, 10],
   "vitesse": [0, 0],
-  "name": "cactus",
+  "name": "beau parleur",
   "path_image": "default_talking_entity.png",
   "position": [1000, 800],
   "size": [50, 50],
@@ -11,5 +11,8 @@
     "cond" : true,
     "text" : "JE SAIS PARLER MOI !",
     "range" : 20
+  },
+  "taker" : {
+    "cond" : false
   }
 }

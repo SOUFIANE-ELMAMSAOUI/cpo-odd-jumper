@@ -1,6 +1,6 @@
 import pygame
 from pygame import K_SPACE
-import copy
+
 from collision import Collision
 from spritesheet import Spritesheet
 from sounds import Sounds
@@ -108,7 +108,7 @@ class Joueur:
         for n, entity in enumerate(entities) :
             if entity.harmful:
                 if entity.collision.test_collision_stat(self.collision):
-                    self.collision.position =  copy.deepcopy(self.position_init)
+                    self.collision.position =  self.position_init[:]
                     self.velocity = [0,0]
                     self.sounds.play('pain')
             if entity.collect :
@@ -120,6 +120,16 @@ class Joueur:
                         self.sounds.play('collect')
             if entity.talking :
                 entity.is_talking = entity.talking_collision.test_collision_stat(self.collision)
+
+            if entity.take_items:
+                if self.touches[pygame.K_e]:
+                    if entity.collision.test_collision_stat(self.collision):
+                        for item in entity.wanted_items[:]:
+                            if item in self.items:
+                                entity.wanted_items.remove(item)
+                                self.items.remove(item)
+
+
 
 
     def show(self):
