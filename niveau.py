@@ -6,6 +6,7 @@ from joueur import Joueur
 import os
 import json
 import pygame
+from sounds import Sounds
 
 
 class Niveau:
@@ -20,8 +21,10 @@ class Niveau:
         self.image_fond = Image(path_image_fond)
         self.fenetre = fenetre
         self.joueur = Joueur(fenetre=fenetre, spritesheet_path=data_joueur)
+        self.sounds=Sounds()
 
     def load_data_level(self):
+        self.sounds.stop("background")
         #chargement des entités
         entities_dir = os.path.join("levels_data", self.entities_path)
 
@@ -73,6 +76,7 @@ class Niveau:
 
     def pre_run(self):
         #charger l'image de fond
+
         self.image_fond.load_image()
         #charger le spritesheet du joueur
         self.joueur.spritesheet.image.load_image()

@@ -3,7 +3,7 @@ import json
 import pygame
 from menu import Menu
 from niveau import Niveau
-
+from sounds import Sounds
 
 class Jeu:
     def __init__(self):
@@ -39,6 +39,7 @@ class Jeu:
 
 
         self.loop = True
+        self.sounds = Sounds()
 
 
     def run(self):
@@ -52,19 +53,29 @@ class Jeu:
 
             elif self.etat == 0:
                 #menu principale
+                if not pygame.mixer.get_busy():
+                    self.sounds.play('background', loop=True, volume=0.3)
+
                 self.loop, self.etat = self.menu_1.run()
 
             elif self.etat == 1:
                 #menu des niveaux
+                if not pygame.mixer.get_busy():
+                    self.sounds.play('background', loop=True, volume=0.3)
+
                 self.loop, self.etat = self.menu_niveau.run()
 
             elif self.etat == 2:
                 #menu des badges
+                if not pygame.mixer.get_busy():
+                    self.sounds.play('background', loop=True, volume=0.3)
+
                 self.loop, self.etat = self.menu_badge.run()
 
 
             elif self.etat == 10000:
                 #prerun niveau 0
+                self.sounds.stop('background')
                 self.niveau0.load_data_level()
                 self.niveau0.create_colliders()
                 self.niveau0.pre_run()
