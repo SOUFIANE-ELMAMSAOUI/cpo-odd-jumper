@@ -49,7 +49,7 @@ class Joueur:
             self.acceleration[0] = self.WALK_SPEED
             is_moving = True
         else:
-
+            is_moving=False
             self.acceleration[0] = 0
             self.velocity[0] = 0
         if (self.velocity[0] < 0 < self.acceleration[0]) or (self.velocity[0] > 0 > self.acceleration[0]):
@@ -73,9 +73,15 @@ class Joueur:
             #saut
         if self.touches[K_SPACE] and self.jump_authorized:
             self.velocity[1]-=1000
-            self.sounds.play('jump')
             self.sounds.stop('walk')
+            self.sounds.play('jump')
             is_jumping = True
+
+        if is_moving and self.jump_authorized:
+            self.sounds.play('walk')
+        else:
+            self.sounds.stop('walk')
+
 
         v_temp[1] += self.velocity[1] * dt + (self.acceleration[1] * .5) * (dt * dt)
 
@@ -124,10 +130,12 @@ class Joueur:
             if entity.take_items:
                 if self.touches[pygame.K_e]:
                     if entity.collision.test_collision_stat(self.collision):
+                        self.sounds.play('level_completed')
                         for item in entity.wanted_items[:]:
                             if item in self.items:
                                 entity.wanted_items.remove(item)
                                 self.items.remove(item)
+
 
 
 
