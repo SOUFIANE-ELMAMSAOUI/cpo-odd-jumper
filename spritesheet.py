@@ -14,7 +14,7 @@ class Spritesheet:
             return None
         frame = pygame.Surface((w, h), pygame.SRCALPHA)
         frame.blit(self.image.image, (0, 0), (x, y, w, h))
-        frame.set_colorkey((0, 0, 0))
+        frame.set_colorkey((255, 255, 255))
         return frame
 
 
@@ -24,13 +24,16 @@ if __name__ == "__main__":
     screen = pygame.display.set_mode((800, 600))
     pygame.display.set_caption("Animation Spritesheet")
 
-    spritesheet = Spritesheet("spritesheet.png")
+    image = Image("image_fond_test.png")
+    image.load_image()
+
+    spritesheet = Spritesheet("Run.png")
     spritesheet.image.load_image()
 
-    frame_width, frame_height = 85, 128  # Taille des frames
-    num_frames = 7                    # Nombre de frames dans la spritesheet
+    frame_width, frame_height = 128, 208  # Taille des frames
+    num_frames = 10                   # Nombre de frames dans la spritesheet
     current_frame = 0
-    frame_rate = 180  # Temps entre les frames en millisecondes
+    frame_rate = 90  # Temps entre les frames en millisecondes
     last_update = pygame.time.get_ticks()
 
     clock = pygame.time.Clock()
@@ -51,8 +54,10 @@ if __name__ == "__main__":
         frame = spritesheet.get_frame(x, y, frame_width, frame_height)
 
         screen.fill((50, 50, 50))  # Fond gris
+        image.draw(screen, (0,0))
         if frame:
             screen.blit(frame, (100, 100))
+
 
         pygame.display.flip()
         clock.tick(60)
