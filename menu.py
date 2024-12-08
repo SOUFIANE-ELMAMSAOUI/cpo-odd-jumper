@@ -23,10 +23,6 @@ class Menu:
             self.image = Image(data["background"])
             self.image.load_image()
 
-        if "background2" in data:
-            self.image = Image(data["background2"])
-            self.image.load_image()
-
     def run(self):
         #on affiche une image si il y en a une, autrement on affiche un fond uni gris
         if self.image is not None:

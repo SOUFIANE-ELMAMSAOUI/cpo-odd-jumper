@@ -78,7 +78,7 @@ class Joueur:
             is_jumping = True
 
         if is_moving and self.jump_authorized:
-            self.sounds.play('walk')
+            self.sounds.play('walk',loop=False,volume=0.3)
         else:
             self.sounds.stop('walk')
 
@@ -116,6 +116,7 @@ class Joueur:
                 if entity.collision.test_collision_stat(self.collision):
                     self.collision.position =  self.position_init[:]
                     self.velocity = [0,0]
+                    self.sounds.stop('walk')
                     self.sounds.play('pain')
             if entity.collect :
                 if self.touches[pygame.K_e]:
@@ -125,7 +126,14 @@ class Joueur:
                         n_entities_poped+=1
                         self.sounds.play('collect')
             if entity.talking :
-                entity.is_talking = entity.talking_collision.test_collision_stat(self.collision)
+                if entity.talking_collision.test_collision_stat(self.collision):
+                    entity.is_talking =True
+                    self.sounds.play('robot',loop=False,volume=0.2)
+                else:
+                    entity.is_talking =False
+                    self.sounds.stop('robot')
+
+
 
             if entity.take_items:
                 if self.touches[pygame.K_e]:
