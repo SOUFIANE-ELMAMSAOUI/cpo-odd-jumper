@@ -4,6 +4,6 @@
   "data_path" : "./levels_data/niveau_test.json",
   "path_image_fond": "niveau_test.png",
   "joueur" : {
-    "spritesheet" : "test_joueur.png"
+    "spritesheet" : "Joueur.png"
   }
 }

@@ -7,20 +7,18 @@ from sounds import Sounds
 
 
 class Joueur:
-    def __init__(self, MAX_SPEED=[1000, 1500], WALK_SPEED=1200, animation_frame=0, fenetre=None, spritesheet_path="",
+    def __init__(self, MAX_SPEED=[650, 1500], WALK_SPEED=1200, animation_frame=0, fenetre=None, spritesheet_path="",
                  position=[200, 100], position_init=[200, 100]):
         self.MAX_SPEED = MAX_SPEED
         self.WALK_SPEED = WALK_SPEED
-        self.animation_frame = animation_frame
 
         self.fenetre = fenetre
         self.spritesheet = Spritesheet(spritesheet_path)
         self.position_init = position_init
         # attribus pour les déplacements/mouvements
         self.last_time = None  # pour calcule de dt
-        self.collision = Collision(position, [50, 100])
+        self.collision = Collision(position, [32, 70])
         self.gravity = 2000
-        self.friction = -0.1
         self.acceleration = [0, self.gravity]
         self.velocity = [0, 0]
         self.touches = pygame.key.get_pressed()
@@ -28,6 +26,13 @@ class Joueur:
         self.sounds = Sounds()
 
         self.items = []
+
+        self.direction = 0
+        self.animation = 0
+        self.current_frame = 0
+        self.n_frames = [7, 13, 10, 10, 10, 10]
+        self.animation_times = [200, 90, 90, 90, 170]
+        self.last_frame = 0
 
     def input_handle(self):
         self.touches = pygame.key.get_pressed()
@@ -40,11 +45,13 @@ class Joueur:
         # calcule pour x
         if self.touches[pygame.K_q]:
             self.acceleration[0] = -self.WALK_SPEED
+            self.direction = 1
             is_moving = True
 
         elif self.touches[pygame.K_d]:
             self.acceleration[0] = self.WALK_SPEED
             is_moving = True
+            self.direction = 0
         else:
             is_moving = False
             self.acceleration[0] = 0
@@ -137,6 +144,54 @@ class Joueur:
                                 self.items.remove(item)
 
     def show(self):
-        self.spritesheet.image.draw(self.fenetre, self.collision.position)
+        if self.direction:
+            off = 10
+        else:
+            off = 0
+
+        if self.velocity[1] < 0:
+            # animation saute (monté) ligne 4
+            if self.animation != 4:
+                self.animation = 4
+            self.current_frame = 2
+
+        elif self.velocity[1] > 0:
+            if self.animation !=4:
+                self.animation = 4
+                self.current_frame = 3
+            if self.current_frame > 5:
+                self.current_frame = 5
+            elif self.current_frame < 3:
+                self.current_frame = 3
+
+        elif self.velocity[0] == 0 and self.velocity[1] == 0:
+            #animation idle ligne 0
+            if self.animation != 0:
+                self.animation = 0
+                self.current_frame = 0
+
+
+        elif self.velocity[0] != 0 and self.velocity[1] == 0:
+            #animation run ligne 3
+            if self.animation != 3:
+                self.animation = 3
+                self.current_frame = 0
+
+
+
+
+
+
+        frame = self.spritesheet.get_frame(self.current_frame, self.animation, 128, 128, 0, 0, self.direction)
+
+
+        time = pygame.time.get_ticks()
+        if self.last_frame + self.animation_times[self.animation] < time:
+            self.last_frame = time
+            self.current_frame = (self.current_frame + 1) % self.n_frames[self.animation]
+
+
+        #pygame.draw.rect(self.fenetre, (255, 0, 0), pygame.Rect(self.collision.position[0], self.collision.position[1], self.collision.size[0], self.collision.size[1]))
+        self.fenetre.blit(frame, (self.collision.position[0] - 44 - off, self.collision.position[1] - 56))
 
 

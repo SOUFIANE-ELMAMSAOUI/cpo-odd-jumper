@@ -8,13 +8,16 @@ class Spritesheet:
         self.image = Image(path)
         self.sprite_sheet = self.image.image
 
-    def get_frame(self, x, y, w, h):
+    def get_frame(self, x, y, w, h, offset_x, offset_y, mirror):
         if not self.image.image:
             print("Erreur : La spritesheet n'est pas chargée.")
             return None
-        frame = pygame.Surface((w, h), pygame.SRCALPHA)
-        frame.blit(self.image.image, (0, 0), (x, y, w, h))
-        frame.set_colorkey((255, 255, 255))
+        frame = pygame.Surface((w-offset_x, h-offset_y), pygame.SRCALPHA)
+        frame.blit(self.image.image, (0, 0), (x*w, y*h, w, h))
+
+        if mirror:
+            frame = pygame.transform.flip(frame, True, False)
+        frame.set_colorkey((0, 0, 0))
         return frame
 
 
@@ -27,13 +30,13 @@ if __name__ == "__main__":
     image = Image("image_fond_test.png")
     image.load_image()
 
-    spritesheet = Spritesheet("Run.png")
+    spritesheet = Spritesheet("Joueur.png")
     spritesheet.image.load_image()
 
-    frame_width, frame_height = 128, 208  # Taille des frames
+    frame_width, frame_height = 128, 128  # Taille des frames
     num_frames = 10                   # Nombre de frames dans la spritesheet
     current_frame = 0
-    frame_rate = 90  # Temps entre les frames en millisecondes
+    frame_rate = 100  # Temps entre les frames en millisecondes
     last_update = pygame.time.get_ticks()
 
     clock = pygame.time.Clock()
@@ -49,9 +52,9 @@ if __name__ == "__main__":
             last_update = now
             current_frame = (current_frame + 1) % num_frames
 
-        x = current_frame * frame_width
-        y = 0
-        frame = spritesheet.get_frame(x, y, frame_width, frame_height)
+        x = current_frame
+        y = 3
+        frame = spritesheet.get_frame(x, y, frame_width, frame_height, -45,-55, False)
 
         screen.fill((50, 50, 50))  # Fond gris
         image.draw(screen, (0,0))
@@ -60,6 +63,6 @@ if __name__ == "__main__":
 
 
         pygame.display.flip()
-        clock.tick(60)
+        clock.tick(120)
 
     pygame.quit()
