@@ -1,0 +1,9 @@
+{
+  "name" : "Niveau 1",
+  "entities_path" : "Entites",
+  "data_path" : "./levels_data/map1.json",
+  "path_image_fond": "map1.png",
+  "joueur" : {
+    "spritesheet" : "test_joueur.png"
+  }
+}
