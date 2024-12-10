@@ -35,6 +35,10 @@ Semaine 5:
 - ajout de possibilité que l'entité soit ramassable
 - recherche de tileset (cf lien en bas du readme) pour visuel
 
+Semaine 6:
+- Finir la création des niveaux
+- Finir le menu badge
+- En cours de finir la dernière phase des entités
 
 
 
