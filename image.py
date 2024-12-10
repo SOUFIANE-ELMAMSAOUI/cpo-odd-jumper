@@ -9,6 +9,7 @@ class Image:
     def load_image(self):
             try:
                 self.image = pygame.image.load(os.path.join("Image",self.path)).convert()
+                self.image.set_colorkey((0, 0, 0))
                 #print(f"Image chargée depuis : {self.path}")
             except pygame.error as e:
                 print(f"Erreur lors du chargement de l'image : {self.path} - {e}")
@@ -22,6 +23,7 @@ class Image:
 
     def draw(self, surface, position):
             if self.image:
+
                 surface.blit(self.image, position)
             else:
                 print("Aucune image chargée à afficher.")

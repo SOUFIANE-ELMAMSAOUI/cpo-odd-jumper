@@ -1,0 +1,16 @@
+{
+  "MAX_SPEED": [10, 10],
+  "vitesse": [0, 0],
+  "name": "entite2",
+  "path_image": "arrosoir2.png",
+  "position": [700, 350],
+  "size": [50, 50],
+  "harmful" : false,
+  "collect" : true,
+    "talking" : {
+    "cond" : false
+  },
+  "taker" : {
+    "cond" : false
+  }
+}
