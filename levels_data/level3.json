@@ -1,0 +1,10 @@
+{
+  "name" : "Niveau 3",
+  "entities_path" : "Entites",
+  "data_path" : "./levels_data/map3.json",
+  "path_image_fond": "map3.png",
+  "badge" : "Badge3",
+  "joueur" : {
+    "spritesheet" : "Joueur.png"
+  }
+}
