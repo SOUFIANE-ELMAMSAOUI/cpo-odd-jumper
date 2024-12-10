@@ -3,6 +3,7 @@
   "entities_path" : "Entites",
   "data_path" : "./levels_data/niveau_test.json",
   "path_image_fond": "niveau_test.png",
+  "badge" : null,
   "joueur" : {
     "spritesheet" : "Joueur.png"
   }

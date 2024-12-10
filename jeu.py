@@ -39,7 +39,7 @@ class Jeu:
         for map_path in l["levels"]:
             file_map = open(map_path, "r")
             d = json.load(file_map)
-            self.niveaux.append(Niveau(d["name"], d["entities_path"], d["data_path"], d["path_image_fond"], d["joueur"]["spritesheet"],self.fenetre))
+            self.niveaux.append(Niveau(d["name"], d["entities_path"], d["data_path"], d["path_image_fond"], d["joueur"]["spritesheet"],self.fenetre, d["badge"]))
 
 
         self.loop = True
@@ -99,6 +99,7 @@ class Jeu:
 
                 elif sub_etat == 3:
                     #menu des récompenses
+                    self.menu_badge.unlock_badge(self.niveaux[n_map-1].recompense)
                     self.etat = 0
 
 
