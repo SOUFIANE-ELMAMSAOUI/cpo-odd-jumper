@@ -35,20 +35,20 @@ class Jeu:
         file = open(p, 'r')
         d = json.load(file)
 
-        self.niveau0 = Niveau(d["name"], d["entities_path"], d["data_path"], d["path_image_fond"], d["joueur"]["spritesheet"],self.fenetre)
+        self.niveau0 = Niveau(d["name"], d["entities_path"], d["data_path"], d["path_image_fond"], d["joueur"]["spritesheet"],self.fenetre,)
 
-        q = "./levels_data/level1.json"
+        q = "./levels_data/level_test.json"
         file = open(q, 'r')
         s = json.load(file)
 
         self.niveau1 = Niveau(s["name"], s["entities_path"], s["data_path"], s["path_image_fond"],
-                              s["joueur"]["spritesheet"], self.fenetre)
+                              s["joueur"]["spritesheet"], self.fenetre,"Badge1")
 
         r = "./levels_data/level2.json"
         file = open(r, 'r')
         s = json.load(file)
         self.niveau2 = Niveau(s["name"], s["entities_path"], s["data_path"], s["path_image_fond"],
-                              s["joueur"]["spritesheet"], self.fenetre)
+                              s["joueur"]["spritesheet"], self.fenetre,"Badge3")
 
         self.loop = True
         self.sounds = Sounds()
@@ -121,6 +121,7 @@ class Jeu:
                 #décharger les images du niveau
                 self.niveau1.post_run()
                 self.etat = 0
+                self.menu_badge.unlock_badge(self.niveau1.recompense)
 
             elif self.etat == 20003:
                 #afficher le résultat
@@ -141,6 +142,7 @@ class Jeu:
                 #décharger les images du niveau
                 self.niveau2.post_run()
                 self.etat = 0
+                self.menu_badge.unlock_badge(self.niveau2.recompense)
 
             elif self.etat == 30003:
                 #afficher le résultat

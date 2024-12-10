@@ -8,6 +8,7 @@ class Menu:
     def __init__(self, path, etat, fenetre):
         self.path = path
         self.boutons = []
+        self.badges=[]
         self.fenetre = fenetre
         self.font = pygame.font.Font(None, 24)
         self.etat = etat
@@ -22,6 +23,16 @@ class Menu:
         if "background" in data:
             self.image = Image(data["background"])
             self.image.load_image()
+        if "badges" in data:
+            for badge_data in data["badges"]:
+                badge = {
+                    "name": badge_data["name"],
+                    "image_locked": pygame.image.load(badge_data["image_locked"]),
+                    "image_unlocked": pygame.image.load(badge_data["image_unlocked"]),
+                    "position": badge_data["position"],
+                    "unlocked": badge_data["unlocked"]
+                }
+                self.badges.append(badge)
 
     def run(self):
         #on affiche une image si il y en a une, autrement on affiche un fond uni gris
@@ -29,6 +40,10 @@ class Menu:
             self.image.draw(self.fenetre, [0, 0])
         else:
             self.fenetre.fill((150, 150, 150))
+
+        for badge in self.badges:
+            image = badge["image_unlocked"] if badge["unlocked"] else badge["image_locked"]
+            self.fenetre.blit(image, badge["position"])
 
         #vérification des event sur la fenetre
         for event in pygame.event.get():
@@ -45,6 +60,23 @@ class Menu:
             b.animation()
         return (True, self.etat)
 
+    def unlock_badge(self, badge_name):
+        for badge in self.badges:
+            if badge["name"] == badge_name:
+                badge["unlocked"] = True
+                break
+
+    def save_badge_state(self):
+        with open(self.path, 'r') as file:
+            data = json.load(file)
+
+        for badge in self.badges:
+            for badge_data in data["badges"]:
+                if badge["name"] == badge_data["name"]:
+                    badge_data["unlocked"] = badge["unlocked"]
+
+        with open(self.path, 'w') as file:
+            json.dump(data, file, indent=4)
 
 
 if __name__ == "__main__":

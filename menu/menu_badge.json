@@ -2,5 +2,10 @@
   "boutons":
     [
       {"size":[150, 80], "text":"Retour", "position":[1670, 920], "command":0}
-    ]
+    ],
+  "badges": [
+    {"name": "Badge1", "image_locked": "./Image/ODD1N.png", "image_unlocked": "./Image/ODD1.png", "position": [300, 200], "unlocked": false},
+    {"name": "Badge2", "image_locked": "./Image/ODD6N.png", "image_unlocked": "./Image/ODD6.png", "position": [800, 200], "unlocked": false},
+    {"name": "Badge3", "image_locked": "./Image/ODD7N.png", "image_unlocked": "./Image/ODD7.png", "position": [1400, 200], "unlocked": false}
+  ]
 }

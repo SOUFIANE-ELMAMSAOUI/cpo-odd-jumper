@@ -11,13 +11,14 @@ from sounds import Sounds
 
 class Niveau:
 
-    def __init__(self, name, entities_path, data_path, path_image_fond, data_joueur, fenetre):
+    def __init__(self, name, entities_path, data_path, path_image_fond, data_joueur, fenetre,recompense=None):
         self.name = name
         self.entities_path = entities_path
         self.data_path = data_path
         self.entities = []  # Initialiser la liste des entités
         self.objectif = None
         self.colliders = []
+        self.recompense = recompense
         self.image_fond = Image(path_image_fond)
         self.fenetre = fenetre
         self.joueur = Joueur(fenetre=fenetre, spritesheet_path=data_joueur)
