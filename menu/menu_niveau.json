@@ -3,7 +3,8 @@
   "boutons":
     [
       {"size":[300, 80], "text":"Niveau Test", "position":[100, 100], "command":10000},
-      {"size":[300, 80], "text":"Niveau 1", "position":[860, 100], "command":20000},
+      {"size":[300, 80], "text":"Niveau 1", "position":[760, 100], "command":20000},
+      {"size":[300, 80], "text":"Niveau 2", "position":[1300, 100], "command":30000},
       {"size":[150, 80], "text":"Retour", "position":[1670, 920], "command":0}
     ]
 }

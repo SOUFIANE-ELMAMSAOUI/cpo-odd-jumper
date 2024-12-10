@@ -44,6 +44,12 @@ class Jeu:
         self.niveau1 = Niveau(s["name"], s["entities_path"], s["data_path"], s["path_image_fond"],
                               s["joueur"]["spritesheet"], self.fenetre)
 
+        r = "./levels_data/level2.json"
+        file = open(r, 'r')
+        s = json.load(file)
+        self.niveau2 = Niveau(s["name"], s["entities_path"], s["data_path"], s["path_image_fond"],
+                              s["joueur"]["spritesheet"], self.fenetre)
+
         self.loop = True
         self.sounds = Sounds()
 
@@ -119,6 +125,27 @@ class Jeu:
             elif self.etat == 20003:
                 #afficher le résultat
                 pass
+            elif self.etat == 30000:
+                #prerun niveau 0
+                self.sounds.stop('background')
+                self.niveau2.load_data_level()
+                self.niveau2.create_colliders()
+                self.niveau2.pre_run()
+                self.etat = 30001
+
+            elif self.etat == 30001:
+                #boucle pour le niveau
+                self.loop, self.etat = self.niveau2.run(dt, self.etat)
+
+            elif self.etat == 30002:
+                #décharger les images du niveau
+                self.niveau2.post_run()
+                self.etat = 0
+
+            elif self.etat == 30003:
+                #afficher le résultat
+                pass
+
 
 
 
