@@ -31,24 +31,16 @@ class Jeu:
         self.menu_badge.create_data()
 
         #créer niveau TEMPORAIRE
-        p = "./levels_data/level_test.json"
+        p = "./levels_data/levels.json"
         file = open(p, 'r')
-        d = json.load(file)
+        l = json.load(file)
 
-        self.niveau0 = Niveau(d["name"], d["entities_path"], d["data_path"], d["path_image_fond"], d["joueur"]["spritesheet"],self.fenetre,)
+        self.niveaux = []
+        for map_path in l["levels"]:
+            file_map = open(map_path, "r")
+            d = json.load(file_map)
+            self.niveaux.append(Niveau(d["name"], d["entities_path"], d["data_path"], d["path_image_fond"], d["joueur"]["spritesheet"],self.fenetre))
 
-        q = "./levels_data/level_test.json"
-        file = open(q, 'r')
-        s = json.load(file)
-
-        self.niveau1 = Niveau(s["name"], s["entities_path"], s["data_path"], s["path_image_fond"],
-                              s["joueur"]["spritesheet"], self.fenetre,"Badge1")
-
-        r = "./levels_data/level2.json"
-        file = open(r, 'r')
-        s = json.load(file)
-        self.niveau2 = Niveau(s["name"], s["entities_path"], s["data_path"], s["path_image_fond"],
-                              s["joueur"]["spritesheet"], self.fenetre,"Badge3")
 
         self.loop = True
         self.sounds = Sounds()
@@ -84,71 +76,30 @@ class Jeu:
 
                 self.loop, self.etat = self.menu_badge.run()
 
+            elif self.etat >= 10000:
+                n_map = round(self.etat/10000)
+                sub_etat = self.etat%10000
 
-            elif self.etat == 10000:
-                #prerun niveau 0
-                self.sounds.stop('background')
-                self.niveau0.load_data_level()
-                self.niveau0.create_colliders()
-                self.niveau0.pre_run()
-                self.etat = 10001
+                if sub_etat == 0:
+                    #prerun du niveau
+                    self.sounds.stop('background')
+                    self.niveaux[n_map-1].load_data_level()
+                    self.niveaux[n_map-1].create_colliders()
+                    self.niveaux[n_map-1].pre_run()
+                    self.etat +=1
 
-            elif self.etat == 10001:
-                #boucle pour le niveau
-                self.loop, self.etat = self.niveau0.run(dt, self.etat)
+                elif sub_etat == 1:
+                    #boucle simulation du niveau
+                    self.loop, self.etat = self.niveaux[n_map-1].run(dt, self.etat)
 
-            elif self.etat == 10002:
-                #décharger les images du niveau
-                self.niveau0.post_run()
-                self.etat = 0
+                elif sub_etat == 2:
+                    #déchargement des datas du niveaux
+                    self.niveaux[n_map-1].post_run()
+                    self.etat +=1
 
-            elif self.etat == 10003:
-                #afficher le résultat
-                pass
-            elif self.etat == 20000:
-                #prerun niveau 0
-                self.sounds.stop('background')
-                self.niveau1.load_data_level()
-                self.niveau1.create_colliders()
-                self.niveau1.pre_run()
-                self.etat = 20001
-
-            elif self.etat == 20001:
-                #boucle pour le niveau
-                self.loop, self.etat = self.niveau1.run(dt, self.etat)
-
-            elif self.etat == 20002:
-                #décharger les images du niveau
-                self.niveau1.post_run()
-                self.etat = 0
-                self.menu_badge.unlock_badge(self.niveau1.recompense)
-
-            elif self.etat == 20003:
-                #afficher le résultat
-                pass
-            elif self.etat == 30000:
-                #prerun niveau 0
-                self.sounds.stop('background')
-                self.niveau2.load_data_level()
-                self.niveau2.create_colliders()
-                self.niveau2.pre_run()
-                self.etat = 30001
-
-            elif self.etat == 30001:
-                #boucle pour le niveau
-                self.loop, self.etat = self.niveau2.run(dt, self.etat)
-
-            elif self.etat == 30002:
-                #décharger les images du niveau
-                self.niveau2.post_run()
-                self.etat = 0
-                self.menu_badge.unlock_badge(self.niveau2.recompense)
-
-            elif self.etat == 30003:
-                #afficher le résultat
-                pass
-
-
+                elif sub_etat == 3:
+                    #menu des récompenses
+                    self.etat = 0
 
 
 

@@ -1,0 +1,8 @@
+{
+  "levels" :
+          [
+            "./levels_data/level_test.json",
+            "./levels_data/level1.json",
+            "./levels_data/level2.json"
+          ]
+}
