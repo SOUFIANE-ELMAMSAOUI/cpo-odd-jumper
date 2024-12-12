@@ -3,8 +3,8 @@
   "vitesse": [0, 0],
   "name": "cactus",
   "path_image": "harm2.png",
-  "position": [64, 882],
-  "size": [150, 150],
+  "position": [64, 935],
+  "size": [65, 65],
   "harmful" : true,
   "collect" : false,
   "talking" : {

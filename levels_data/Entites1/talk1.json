@@ -1,0 +1,18 @@
+{
+  "MAX_SPEED": [10, 10],
+  "vitesse": [0, 0],
+  "name": "beau parleur",
+  "path_image": "talk.png",
+  "position": [713, 1000],
+  "size": [70, 70],
+  "harmful" : false,
+  "collect" : false,
+  "talking" : {
+    "cond" : true,
+    "text" : "Aidez moi! Recuperez svp les 3 arrosoires et remplissez le puits",
+    "range" : 20
+  },
+  "taker" : {
+    "cond" : false
+  }
+}

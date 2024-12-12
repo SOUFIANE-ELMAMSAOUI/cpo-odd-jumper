@@ -1,9 +1,9 @@
 {
   "MAX_SPEED": [10, 10],
   "vitesse": [0, 0],
-  "name": "entite1",
-  "path_image": "default_taker_entity.png",
-  "position": [1500, 990],
+  "name": "puits",
+  "path_image": "puits.png",
+  "position": [1350, 770],
   "size": [50, 50],
   "harmful" : false,
   "collect" : false,
@@ -12,6 +12,6 @@
   },
   "taker" : {
     "cond" : true,
-    "items" : ["entite2", "entite5"]
+    "items" : ["entite1", "entite2","entite3"]
   }
 }

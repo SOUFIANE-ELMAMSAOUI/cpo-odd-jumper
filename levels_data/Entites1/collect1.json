@@ -1,9 +1,9 @@
 {
   "MAX_SPEED": [10, 10],
   "vitesse": [0, 0],
-  "name": "entite2",
+  "name": "entite1",
   "path_image": "arrosoir.png",
-  "position": [700, 350],
+  "position": [1680, 350],
   "size": [50, 50],
   "harmful" : false,
   "collect" : true,
