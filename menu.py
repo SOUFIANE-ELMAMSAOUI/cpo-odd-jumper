@@ -14,6 +14,7 @@ class Menu:
         self.etat = etat
         self.image = None
         self.sounds = Sounds()
+        self.s = None
 
     def create_data(self):
         file = open(self.path, 'r')
@@ -23,6 +24,10 @@ class Menu:
         if "background" in data:
             self.image = Image(data["background"])
             self.image.load_image()
+        else:
+            self.s = pygame.Surface((1920, 1080))
+            self.s.set_alpha(128)
+            self.s.fill((0,0,0))
         if "badges" in data:
             for badge_data in data["badges"]:
                 badge = {
@@ -39,7 +44,7 @@ class Menu:
         if self.image is not None:
             self.image.draw(self.fenetre, [0, 0])
         else:
-            self.fenetre.fill((150, 150, 150))
+            self.fenetre.blit(self.s, (0,0))
 
         for badge in self.badges:
             image = badge["image_unlocked"] if badge["unlocked"] else badge["image_locked"]

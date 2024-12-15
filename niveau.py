@@ -1,5 +1,8 @@
+from pygame import K_ESCAPE
+
 from collision import Collision
 from entity import Entity
+from menu import Menu
 from objectif import Objectif
 from image import Image
 from joueur import Joueur
@@ -10,6 +13,7 @@ from sounds import Sounds
 
 
 class Niveau:
+
 
     def __init__(self, name, entities_path, data_path, path_image_fond, data_joueur, fenetre,recompense=None):
         self.name = name
@@ -23,6 +27,9 @@ class Niveau:
         self.fenetre = fenetre
         self.joueur = Joueur(fenetre=fenetre, spritesheet_path=data_joueur["spritesheet"], position=data_joueur["position"])
         self.sounds=Sounds()
+
+        self.menu_pause = Menu("./menu/menu_pause.json", 0, self.fenetre)
+        self.menu_pause.create_data()
 
     def load_data_level(self):
         self.sounds.stop("background")
@@ -103,12 +110,15 @@ class Niveau:
         #affichager des images dans le plan du fond (ex :niveau)
         self.show()
         #affichage des images dans l'avant plan (ex: joueur, entité)
+        self.joueur.anim()
         self.joueur.show()
+
         for entity in self.entities:
             entity.animation()
 
-
-
+        #vérification si le menu de pause doit etre afficher
+        if self.joueur.touches[K_ESCAPE]:
+            return (True, (etat + 4))
 
         #vérification de la fin du niveau
         for entity in  self.entities:
@@ -128,6 +138,19 @@ class Niveau:
 
     def show(self):
         self.image_fond.draw(self.fenetre,(0,0))
+
+
+    def pause(self, g_etat):
+        self.joueur.input_handle()
+
+        self.show()
+        self.joueur.show()
+        for entity in self.entities:
+            entity.animation()
+
+        loop, etat = self.menu_pause.run()
+        return (True, g_etat+etat)
+
 
 
 

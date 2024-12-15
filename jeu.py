@@ -30,6 +30,7 @@ class Jeu:
         self.menu_badge = Menu("./menu/menu_badge.json", 2, self.fenetre)
         self.menu_badge.create_data()
 
+
         #créer niveau TEMPORAIRE
         p = "./levels_data/levels.json"
         file = open(p, 'r')
@@ -98,9 +99,19 @@ class Jeu:
                     self.etat +=1
 
                 elif sub_etat == 3:
-                    #menu des récompenses
+                    #récompenses
                     self.menu_badge.unlock_badge(self.niveaux[n_map-1].recompense)
                     self.etat = 0
+
+                elif sub_etat == 4:
+                    #quitté sans récompenses
+                    self.niveaux[n_map - 1].post_run()
+                    self.etat = 0
+
+                elif sub_etat == 5:
+                    #menu pause
+                    self.loop, self.etat = self.niveaux[n_map - 1].pause(self.etat)
+
 
 
 

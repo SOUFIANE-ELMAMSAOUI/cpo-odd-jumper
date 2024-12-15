@@ -33,6 +33,8 @@ class Joueur:
         self.n_frames = [7, 13, 10, 10, 10, 10]
         self.animation_times = [200, 90, 90, 90, 170]
         self.last_frame = 0
+        self.frame = None
+        self.off = 0
 
     def input_handle(self):
         self.touches = pygame.key.get_pressed()
@@ -142,11 +144,11 @@ class Joueur:
                                 entity.wanted_items.remove(item)
                                 self.items.remove(item)
 
-    def show(self):
+    def anim(self):
         if self.direction:
-            off = 10
+            self.off = 10
         else:
-            off = 0
+            self.off = 0
 
         if self.velocity[1] < 0:
             # animation saute (monté) ligne 4
@@ -181,7 +183,7 @@ class Joueur:
 
 
 
-        frame = self.spritesheet.get_frame(self.current_frame, self.animation, 128, 128, 0, 0, self.direction)
+        self.frame = self.spritesheet.get_frame(self.current_frame, self.animation, 128, 128, 0, 0, self.direction)
 
 
         time = pygame.time.get_ticks()
@@ -190,7 +192,9 @@ class Joueur:
             self.current_frame = (self.current_frame + 1) % self.n_frames[self.animation]
 
 
+
+    def show(self):
         #pygame.draw.rect(self.fenetre, (255, 0, 0), pygame.Rect(self.collision.position[0], self.collision.position[1], self.collision.size[0], self.collision.size[1]))
-        self.fenetre.blit(frame, (self.collision.position[0] - 44 - off, self.collision.position[1] - 56))
+        self.fenetre.blit(self.frame, (self.collision.position[0] - 44 - self.off, self.collision.position[1] - 56))
 
 
