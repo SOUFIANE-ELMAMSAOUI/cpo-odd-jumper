@@ -10,6 +10,7 @@ class Image:
             try:
                 self.image = pygame.image.load(os.path.join("Image",self.path)).convert()
                 self.image.set_colorkey((0, 0, 0))
+
                 #print(f"Image chargée depuis : {self.path}")
             except pygame.error as e:
                 print(f"Erreur lors du chargement de l'image : {self.path} - {e}")

@@ -1,0 +1,19 @@
+{
+  "MAX_SPEED": [10, 10],
+  "vitesse": [0, 0],
+  "name": "entite1",
+  "path_image": "pauvre1.png",
+  "position": [164, 385],
+  "size": [50, 50],
+  "harmful" : false,
+  "collect" : false,
+  "talking" : {
+    "cond" : true,
+    "range" : 25,
+    "text" : "J'ai faim...."
+  },
+  "taker" : {
+    "cond" : true,
+    "items" : ["food"]
+  }
+}

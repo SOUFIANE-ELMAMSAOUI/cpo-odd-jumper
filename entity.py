@@ -24,7 +24,7 @@ class Entity:
             s_temp = [size[0]+talking["range"]*2,size[1]+talking["range"]*2]
             self.talking_collision = Collision(p_temp, s_temp)
             self.font = pygame.font.Font(None, 24)
-            self.text = self.font.render(talking["text"], False, (150, 150, 150))
+            self.text = self.font.render(talking["text"], False, (0, 0, 0))
 
         self.take_items = taker["cond"]
         if self.take_items:

@@ -1,0 +1,16 @@
+{
+  "MAX_SPEED": [10, 10],
+  "vitesse": [0, 0],
+  "name": "cactus",
+  "path_image": "harm1.png",
+  "position": [300, 300],
+  "size": [50, 50],
+  "harmful" : true,
+  "collect" : false,
+  "talking" : {
+    "cond" : false
+  },
+  "taker" : {
+    "cond" : false
+  }
+}
