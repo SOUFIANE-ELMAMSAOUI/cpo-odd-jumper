@@ -1,4 +1,5 @@
 {
+  "background" : "background3.png",
   "boutons":
     [
       {"size":[150, 80], "text":"Retour", "position":[1670, 920], "command":0}
