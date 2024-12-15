@@ -5,6 +5,7 @@
   "path_image_fond": "map3.png",
   "badge" : "Badge1",
   "joueur" : {
-    "spritesheet" : "Joueur.png"
+    "spritesheet" : "Joueur.png",
+    "position" : [700, 600]
   }
 }

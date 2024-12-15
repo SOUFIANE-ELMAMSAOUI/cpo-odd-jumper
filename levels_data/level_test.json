@@ -5,6 +5,7 @@
   "path_image_fond": "niveau_test.png",
   "badge" : null,
   "joueur" : {
-    "spritesheet" : "Joueur.png"
+    "spritesheet" : "Joueur.png",
+    "position" : [200, 100]
   }
 }

@@ -8,13 +8,13 @@ from sounds import Sounds
 
 class Joueur:
     def __init__(self, MAX_SPEED=[650, 1500], WALK_SPEED=1200, animation_frame=0, fenetre=None, spritesheet_path="",
-                 position=[200, 100], position_init=[200, 100]):
+                 position=[200, 100]):
         self.MAX_SPEED = MAX_SPEED
         self.WALK_SPEED = WALK_SPEED
 
         self.fenetre = fenetre
         self.spritesheet = Spritesheet(spritesheet_path)
-        self.position_init = position_init
+        self.position_init = position
         # attribus pour les déplacements/mouvements
         self.last_time = None  # pour calcule de dt
         self.collision = Collision(position, [32, 70])

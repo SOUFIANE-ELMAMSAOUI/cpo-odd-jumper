@@ -21,7 +21,7 @@ class Niveau:
         self.recompense = recompense
         self.image_fond = Image(path_image_fond)
         self.fenetre = fenetre
-        self.joueur = Joueur(fenetre=fenetre, spritesheet_path=data_joueur)
+        self.joueur = Joueur(fenetre=fenetre, spritesheet_path=data_joueur["spritesheet"], position=data_joueur["position"])
         self.sounds=Sounds()
 
     def load_data_level(self):
