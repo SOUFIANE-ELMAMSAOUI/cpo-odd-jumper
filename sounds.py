@@ -38,7 +38,6 @@ class Sounds:
                 available_channel = pygame.mixer.find_channel()
                 if available_channel:  # If there is an available channel
                     available_channel.play(sound)
-            print(Sounds.channels)
         else:
             print(f"Le son '{name}' n'existe pas.")
 
