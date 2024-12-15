@@ -132,8 +132,10 @@ class Niveau:
     def post_run(self):
         self.entities = []
         self.colliders = []
+        self.joueur.items = []
         self.image_fond.unload_image()
-
+        for e in self.entities:
+            e.image.unload_image()
 
 
     def show(self):

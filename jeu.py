@@ -111,6 +111,8 @@ class Jeu:
                 elif sub_etat == 5:
                     #menu pause
                     self.loop, self.etat = self.niveaux[n_map - 1].pause(self.etat)
+                    if self.etat%10000 == 0:
+                        self.niveaux[n_map - 1].post_run()
 
 
 
