@@ -115,6 +115,8 @@ class Niveau:
             if entity.take_items:
                 if len(entity.wanted_items) > 0:
                     return True, etat
+        self.sounds.stop_all()
+        self.sounds.play('level_completed')
         return (True, (etat + 1))
 
     def post_run(self):

@@ -1,6 +1,9 @@
 import pygame
+from pygame.mixer import Sound
+
 
 class Sounds:
+    channels = {}
     def __init__(self):
         pygame.mixer.init()
 
@@ -15,7 +18,7 @@ class Sounds:
             'pain':pygame.mixer.Sound("Sounds/pain.wav"),
             'robot':pygame.mixer.Sound("Sounds/robot.wav")
         }
-        self.channels = {}
+        
 
     def play(self, name, loop=False, volume=1.0):
         if name in self.sounds:
@@ -24,23 +27,28 @@ class Sounds:
 
             # Si le son doit être joué en boucle, on utilise un canal dédié
             if loop:
-                if name not in self.channels:  # Si le son n'est pas déjà joué sur un canal
-                    self.channels[name] = pygame.mixer.Channel(
-                        len(self.channels))  # Crée un canal unique pour chaque son en boucle
-                self.channels[name].play(sound, loops=-1)  # Joue le son en boucle
+                if name not in Sounds.channels:  # Si le son n'est pas déjà joué sur un canal
+                    Sounds.channels[name] = pygame.mixer.Channel(
+                        len(Sounds.channels))  # Crée un canal unique pour chaque son en boucle
+                Sounds.channels[name].play(sound, loops=-1)  # Joue le son en boucle
             else:
                 pygame.mixer.Sound.play(sound)  # Jouer le son normalement
         else:
             print(f"Le son '{name}' n'existe pas.")
 
     def stop(self, name):
-        if name in self.channels:
-            self.channels[name].stop()  # Arrêter le canal spécifique
-            del self.channels[name]  # Supprimer le canal du dictionnaire
+        if name in Sounds.channels:
+            Sounds.channels[name].stop()  # Arrêter le canal spécifique
+            del Sounds.channels[name]  # Supprimer le canal du dictionnaire
         elif name in self.sounds:
             self.sounds[name].stop()  # Arrêter un son sans canal
         else:
             print(f"Le son '{name}' n'existe pas.")
+
+    def stop_all(self):
+        for c in Sounds.channels:
+            Sounds.channels[c].stop()
+            del Sounds.channels[c]
 
 if __name__ == "__main__":
     pygame.init()
