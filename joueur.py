@@ -78,14 +78,11 @@ class Joueur:
             # saut
         if self.touches[K_SPACE] and self.jump_authorized:
             self.velocity[1] -= 1000
-            self.sounds.stop('walk')
+            #self.sounds.stop('walk')
             self.sounds.play('jump')
             is_jumping = True
 
-        if is_moving and self.jump_authorized:
-            self.sounds.play('walk',loop=False,volume=0.3)
-        else:
-            self.sounds.stop('walk')
+
 
         v_temp[1] += self.velocity[1] * dt + (self.acceleration[1] * .5) * (dt * dt)
 
@@ -111,13 +108,19 @@ class Joueur:
         self.collision.position[0] += v_temp[0]
         self.collision.position[1] += v_temp[1]
 
+        if is_moving and v_temp[0] != 0 and self.jump_authorized:
+            self.sounds.play('walk',loop=True,volume=0.7)
+        else:
+            self.sounds.stop('walk')
+
+
         n_entities_poped = 0
         for n, entity in enumerate(entities):
             if entity.harmful:
                 if entity.collision.test_collision_stat(self.collision):
                     self.collision.position = self.position_init[:]
                     self.velocity = [0, 0]
-                    self.sounds.stop('walk')
+                    #self.sounds.stop('walk')
                     self.sounds.play('pain')
             if entity.collect:
                 if self.touches[pygame.K_e]:

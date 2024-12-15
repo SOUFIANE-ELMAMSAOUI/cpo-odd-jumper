@@ -84,7 +84,7 @@ class Niveau:
 
     def pre_run(self):
         #charger l'image de fond
-
+        self.sounds.stop_all()
         self.image_fond.load_image()
         #charger le spritesheet du joueur
         self.joueur.spritesheet.image.load_image()
