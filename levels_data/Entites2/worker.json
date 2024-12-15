@@ -1,0 +1,19 @@
+{
+  "MAX_SPEED": [10, 10],
+  "vitesse": [0, 0],
+  "name": "entite1",
+  "path_image": "worker.png",
+  "position": [1600, 958],
+  "size": [50, 50],
+  "harmful" : false,
+  "collect" : false,
+  "talking" : {
+    "cond" : true,
+    "range" : 20,
+    "text" : "J'aurai besoin de cables."
+  },
+  "taker" : {
+    "cond" : true,
+    "items" : ["cable", "cable", "cable"]
+  }
+}

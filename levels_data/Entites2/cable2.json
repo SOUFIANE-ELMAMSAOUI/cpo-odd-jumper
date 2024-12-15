@@ -1,0 +1,16 @@
+{
+  "MAX_SPEED": [10, 10],
+  "vitesse": [0, 0],
+  "name": "cable",
+  "path_image": "cable.png",
+  "position": [200, 1000],
+  "size": [50, 50],
+  "harmful" : false,
+  "collect" : true,
+    "talking" : {
+    "cond" : false
+  },
+  "taker" : {
+    "cond" : false
+  }
+}

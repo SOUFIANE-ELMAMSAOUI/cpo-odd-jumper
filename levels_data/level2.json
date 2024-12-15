@@ -1,11 +1,11 @@
 {
   "name" : "Niveau 2",
-  "entities_path" : "Entites",
+  "entities_path" : "Entites2",
   "data_path" : "./levels_data/map2.json",
   "path_image_fond": "map2.png",
   "badge" : "Badge3",
   "joueur" : {
     "spritesheet" : "Joueur.png",
-    "position" : [450, 560]
+    "position" : [430, 560]
   }
 }

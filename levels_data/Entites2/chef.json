@@ -1,15 +1,15 @@
 {
   "MAX_SPEED": [10, 10],
   "vitesse": [0, 0],
-  "name": "beau parleur",
-  "path_image": "talk.png",
-  "position": [713, 1000],
+  "name": "chef",
+  "path_image": "chef.png",
+  "position": [475, 639],
   "size": [70, 70],
   "harmful" : false,
   "collect" : false,
   "talking" : {
     "cond" : true,
-    "text" : "Aidez moi! Recuperez les 3 arrosoires et remplissez le puits.",
+    "text" : "Va aider mon employé.",
     "range" : 20
   },
   "taker" : {
