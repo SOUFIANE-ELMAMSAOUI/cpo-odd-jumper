@@ -1,9 +1,9 @@
 # cpo Odd Jumper
 
 ## Prérequis
-- Python 3
-- Librairie Pygame
-- Résolution d'écran de 1920x1080
+- **Python 3**
+- Librairie **pygame**
+- Résolution d'écran de **1920x1080**
 
 ## Comment Jouer
 **Lancer le jeu :**
@@ -19,8 +19,13 @@ python3 main.py
 
 ## Fonctionalitées
 
+- Des menus créer depuis des fichiers json qui peuvent contenir : des boutons, des images de fonds, des images de bages grisé ou non en fonction des completions des niveaux.
+- Des niveaux de type platformeur, comprennant le déplacement du joueur (gauche, droite, saut) avec des physiques de gravité et de collision calculer en delta time ainsi que des accelerations et vitesses. Le joueur peu aussi intéragire avec des entitées qui on différents comportement : item qui peu être récupéré, entitées qui "tue" et fait revenir le joueur a l'endroit de départ, entités qui parle affichant un texte souvant servant d'explication, entités qui récupère les items récupérés afin de compléter le niveau.
 
-## Compte rendu
+- Fonctionalités suplémentaire non visible : déchargement/chargement des ressources(ex : images) nécésaire pour les niveaux/menu dynamiques pour limité l'utilisation de ressources matériel (RAM).
+
+
+## Compte rendu des semaines
 
 **Semaine 1 :** 
 
@@ -60,8 +65,10 @@ python3 main.py
 
 ## Ressources suplémentaires
 
-
-
+Les fichiers suplémentaires du rendu se trouve dans le dossier :  
+```
+./ressources_rendu/
+```
 
 
 ## Sources : Tileset
