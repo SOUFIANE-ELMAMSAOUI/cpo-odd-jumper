@@ -3,7 +3,7 @@
 ## Prérequis
 - **Python 3**
 - Librairie **pygame**
-- Résolution d'écran de **1920x1080**
+- Résolution d'écran **16/9**
 
 ## Comment Jouer
 **Lancer le jeu :**
