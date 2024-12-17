@@ -10,7 +10,7 @@ class Menu:
         self.boutons = []
         self.badges=[]
         self.fenetre = fenetre
-        self.font = pygame.font.Font(None, 24)
+        self.font = pygame.font.Font("Modak-Regular.ttf", 32)
         self.etat = etat
         self.image = None
         self.sounds = Sounds()
@@ -20,7 +20,7 @@ class Menu:
         file = open(self.path, 'r')
         data = json.load(file)
         for bouton_data in data["boutons"]:
-            self.boutons.append(Bouton(bouton_data["size"], bouton_data["text"], self.font, bouton_data["position"], bouton_data["command"], self.fenetre))
+            self.boutons.append(Bouton(bouton_data["size"], bouton_data["text"], self.font, bouton_data["position"], bouton_data["command"], self.fenetre, bouton_data["image"], bouton_data["text_color"]))
         if "background" in data:
             self.image = Image(data["background"])
             self.image.load_image()
@@ -35,7 +35,7 @@ class Menu:
                     "image_locked": pygame.image.load(badge_data["image_locked"]),
                     "image_unlocked": pygame.image.load(badge_data["image_unlocked"]),
                     "position": badge_data["position"],
-                    "unlocked": badge_data["unlocked"]
+                    "unlocked": badge_data["unlocked"],
                 }
                 self.badges.append(badge)
 

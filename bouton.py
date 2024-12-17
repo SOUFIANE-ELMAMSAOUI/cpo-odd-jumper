@@ -1,26 +1,40 @@
 import pygame
 
+from image import Image
+
 
 class Bouton:
-    def __init__(self, size=[150, 50], text_bouton="Bouton", font= None, position = [10, 10], command = 0, fenetre = None):
+    def __init__(self, size=[150, 50], text_bouton="Bouton", font= None, position = [10, 10], command = 0, fenetre = None, image_path = None, text_color = (0, 0, 0)):
         self.size = size
         self.text_bouton = text_bouton
         self.button_surface = pygame.Surface(size)
         self.font = font
-        self.text = self.font.render(self.text_bouton, True, (0, 0, 0))
+        self.text = self.font.render(self.text_bouton, True, text_color)
         self.text_rect = self.text.get_rect(center=(self.button_surface.get_width() / 2, self.button_surface.get_height() / 2))
         self.button_rect = pygame.Rect(position[0], position[1], size[0], size[1])
         self.command = command
         self.fenetre = fenetre
+        self.image = None
+        if image_path != None:
+            self.image = Image(image_path)
+            self.image.load_image()
 
     def animation(self):
-        if self.button_rect.collidepoint(pygame.mouse.get_pos()):
-            pygame.draw.rect(self.button_surface, (127, 255, 212), (1, 1, self.size[0]-2, self.size[1]-2))
-        else:
-            pygame.draw.rect(self.button_surface, (255, 255, 255), (1, 1, self.size[0]-2, self.size[1]-2))
+        if self.image != None:
 
-        self.button_surface.blit(self.text, self.text_rect)
-        self.fenetre.blit(self.button_surface, (self.button_rect.x, self.button_rect.y))
+            self.image.draw(self.fenetre, (self.button_rect.x, self.button_rect.y))
+            text_x = self.button_rect.x + self.size[0] / 2 - self.text.get_width() / 2
+            text_y = self.button_rect.y + self.size[1] / 2 - self.text.get_height() / 2
+            self.fenetre.blit(self.text, (text_x, text_y))
+        else:
+            if self.button_rect.collidepoint(pygame.mouse.get_pos()):
+
+                    pygame.draw.rect(self.button_surface, (127, 255, 212), (1, 1, self.size[0]-2, self.size[1]-2))
+            else:
+                pygame.draw.rect(self.button_surface, (255, 255, 255), (1, 1, self.size[0]-2, self.size[1]-2))
+            self.button_surface.blit(self.text, self.text_rect)
+            self.fenetre.blit(self.button_surface, (self.button_rect.x, self.button_rect.y))
+
 
 
 

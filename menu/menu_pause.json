@@ -1,8 +1,8 @@
 {
   "boutons":
     [
-      {"size":[500, 80], "text":"Continuer", "position":[710, 350], "command":-4},
-      {"size":[500, 80], "text":"Recommencer", "position":[710, 500], "command":-5},
-      {"size":[500, 80], "text":"Quitter le Niveau", "position":[710, 650], "command": -1}
+      {"size":[500, 80], "image" :  null, "text":"Continuer", "text_color" : [0, 0, 0], "position":[710, 350], "command":-4},
+      {"size":[500, 80], "image" :  null, "text":"Recommencer", "text_color" : [0, 0, 0], "position":[710, 500], "command":-5},
+      {"size":[500, 80], "image" :  null, "text":"Quitter le Niveau", "text_color" : [0, 0, 0], "position":[710, 650], "command": -1}
     ]
 }

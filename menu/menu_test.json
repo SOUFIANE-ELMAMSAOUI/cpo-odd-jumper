@@ -1,7 +1,7 @@
 {
   "boutons":
     [
-      {"size":[500, 100], "text":"Bouton 1", "position":[10, 10], "command":0},
-      {"size":[150, 50], "text":"Bouton 2", "position":[10, 80], "command":0}
+      {"size":[500, 100], "image" :  null, "text":"Bouton 1", "position":[10, 10], "command":0},
+      {"size":[150, 50], "image" :  null, "text":"Bouton 2", "position":[10, 80], "command":0}
     ]
 }

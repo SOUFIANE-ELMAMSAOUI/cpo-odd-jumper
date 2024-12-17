@@ -2,8 +2,8 @@
   "background": "./image_fond_test.png",
   "boutons":
     [
-      {"size":[500, 80], "text":"Niveaux", "position":[710, 350], "command":1},
-      {"size":[500, 80], "text":"Badge", "position":[710, 500], "command":2},
-      {"size":[500, 80], "text":"Quitter", "position":[710, 650], "command": -1}
+      {"size":[500, 96], "image" :  "Button12.png", "text":"Niveaux", "text_color" : [255, 239, 128], "position":[710, 350], "command":1},
+      {"size":[500, 96], "image" :  "Button12.png", "text":"Badges", "text_color" : [255, 239, 128], "position":[710, 500], "command":2},
+      {"size":[500, 96], "image" :  "Button12.png", "text":"Quitter", "text_color" : [255, 239, 128], "position":[710, 650], "command": -1}
     ]
 }

@@ -2,10 +2,10 @@
   "background": "./background_niveau.png",
   "boutons":
     [
-      {"size":[300, 80], "text":"Niveau Test", "position":[100, 100], "command":10000},
-      {"size":[300, 80], "text":"Niveau 1", "position":[760, 100], "command":20000},
-      {"size":[300, 80], "text":"Niveau 2", "position":[1300, 100], "command":30000},
-      {"size":[300, 80], "text":"Niveau 3", "position":[100, 300], "command":40000},
-      {"size":[150, 80], "text":"Retour", "position":[1670, 920], "command":0}
+      {"size":[300, 80], "image" :  null, "text":"Niveau Test", "text_color" : [0, 0, 0], "position":[100, 100], "command":10000},
+      {"size":[300, 80], "image" :  null, "text":"Niveau 1", "text_color" : [0, 0, 0], "position":[760, 100], "command":20000},
+      {"size":[300, 80], "image" :  null, "text":"Niveau 2", "text_color" : [0, 0, 0], "position":[1300, 100], "command":30000},
+      {"size":[300, 80], "image" :  null, "text":"Niveau 3", "text_color" : [0, 0, 0], "position":[100, 300], "command":40000},
+      {"size":[150, 80], "image" :  null, "text":"Retour", "text_color" : [0, 0, 0], "position":[1670, 920], "command":0}
     ]
 }

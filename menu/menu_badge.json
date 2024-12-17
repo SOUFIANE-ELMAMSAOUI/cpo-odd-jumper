@@ -2,7 +2,7 @@
   "background" : "background3.png",
   "boutons":
     [
-      {"size":[150, 80], "text":"Retour", "position":[1670, 920], "command":0}
+      {"size":[150, 80], "image" :  null, "text":"Retour", "text_color" : [0, 0, 0], "position":[1670, 920], "command":0}
     ],
   "badges": [
     {"name": "Badge1", "image_locked": "./Image/ODD1N.png", "image_unlocked": "./Image/ODD1.png", "position": [300, 200], "unlocked": false},
