@@ -4,7 +4,7 @@
   "name": "cactus",
   "path_image": "cactusn3.png",
   "position": [1500, 830],
-  "size": [50, 50],
+  "size": [120, 100],
   "harmful" : true,
   "collect" : false,
   "talking" : {

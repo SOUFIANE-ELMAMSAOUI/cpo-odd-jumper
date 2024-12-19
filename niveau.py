@@ -80,7 +80,9 @@ class Niveau:
             if layers["name"] ==  "collision":
                 for n, tile_value in enumerate(layers["data"]):
                     if tile_value > 0 :
-                        self.colliders.append(Collision([n%data["width"]*data["tilewidth"], int((n-n%data["width"])/data["width"])*data["tileheight"]], [data["tilewidth"], data["tileheight"]]))
+                        self.colliders.append(Collision([n%data["width"]*data["tilewidth"],
+                                                    int((n-n%data["width"])/data["width"])*data["tileheight"]], 
+                                                        [data["tilewidth"], data["tileheight"]]))
 
     def pre_run(self):
         #charger l'image de fond
