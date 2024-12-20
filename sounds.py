@@ -17,7 +17,10 @@ class Sounds:
             'walk': pygame.mixer.Sound("Sounds/walk.wav"),
             'collect': pygame.mixer.Sound("Sounds/collect.wav"),
             'pain': pygame.mixer.Sound("Sounds/pain.wav"),
-            'robot': pygame.mixer.Sound("Sounds/robot.wav")
+            'robot': pygame.mixer.Sound("Sounds/robot.wav"),
+            'industry':pygame.mixer.Sound("Sounds/industry.wav"),
+            'nature':pygame.mixer.Sound("Sounds/nature.wav"),
+            'forest':pygame.mixer.Sound("Sounds/forest.wav")
         }
 
     def play(self, name, loop=False, volume=1.0):
