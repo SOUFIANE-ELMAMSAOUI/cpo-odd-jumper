@@ -7,5 +7,7 @@
   "joueur" : {
     "spritesheet" : "Joueur.png",
     "position" : [200, 100]
-  }
+  },
+  "background_sound": "industry"
+
 }

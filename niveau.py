@@ -15,7 +15,7 @@ from sounds import Sounds
 class Niveau:
 
 
-    def __init__(self, name, entities_path, data_path, path_image_fond, data_joueur, fenetre,recompense=None):
+    def __init__(self, name, entities_path, data_path, path_image_fond, data_joueur, fenetre,recompense=None,background_sound=None):
         self.name = name
         self.entities_path = entities_path
         self.data_path = data_path
@@ -27,7 +27,7 @@ class Niveau:
         self.fenetre = fenetre
         self.joueur = Joueur(fenetre=fenetre, spritesheet_path=data_joueur["spritesheet"], position=data_joueur["position"])
         self.sounds=Sounds()
-
+        self.background_sound = background_sound
         self.menu_pause = Menu("./menu/menu_pause.json", 0, self.fenetre)
         self.menu_pause.create_data()
 
@@ -87,6 +87,8 @@ class Niveau:
     def pre_run(self):
         #charger l'image de fond
         self.sounds.stop_all()
+        if not self.background_sound == None:
+            self.sounds.play(self.background_sound, loop=True, volume=0.5)
         self.image_fond.load_image()
         #charger le spritesheet du joueur
         self.joueur.spritesheet.image.load_image()
@@ -132,6 +134,8 @@ class Niveau:
         return (True, (etat + 1))
 
     def post_run(self):
+        if not self.background_sound == None:
+            self.sounds.stop(self.background_sound)
         self.entities = []
         self.colliders = []
         self.joueur.items = []

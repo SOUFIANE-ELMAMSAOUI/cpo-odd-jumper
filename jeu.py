@@ -40,7 +40,7 @@ class Jeu:
         for map_path in l["levels"]:
             file_map = open(map_path, "r")
             d = json.load(file_map)
-            self.niveaux.append(Niveau(d["name"], d["entities_path"], d["data_path"], d["path_image_fond"], d["joueur"],self.fenetre, d["badge"]))
+            self.niveaux.append(Niveau(d["name"], d["entities_path"], d["data_path"], d["path_image_fond"], d["joueur"],self.fenetre, d["badge"],d["background_sound"]))
 
 
         self.loop = True
