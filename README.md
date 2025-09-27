@@ -5,6 +5,12 @@
 - Librairie **pygame**
 - Résolution d'écran **16/9**
 
+## Participants
+- SOUFIANE EL MAMSAOUI
+- BREWEN LE LANN
+- EMMANUEL QUEAU
+```
+
 ## Comment Jouer
 **Lancer le jeu :**
 ```
